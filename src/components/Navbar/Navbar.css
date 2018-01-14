@@ -1,0 +1,56 @@
+.desktopNav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 35px;
+    width: 100%;
+    background-color: #383D38;
+    color: white;
+}
+
+.mobile-nav {
+    width: 200px;
+    height: 30vh;
+    background: #383D38;
+    position: absolute;
+    left: -200px;
+    top: 55px;
+    transition: 0.6s;
+}
+
+.slide {
+    left: 0px;
+}
+
+li {
+    margin-left: 20px;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+    color: white;
+}
+
+a:hover {
+    color: cornflowerblue;
+}
+
+.ham-menu {
+    width: 30px;
+    height: 30px;
+    margin-left: 75px;
+    background: url('http://www.stickpng.com/assets/images/588a64e7d06f6719692a2d11.png') ;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: none;
+}
+
+@media screen and (max-width: 768px){
+    .desktopNav {
+        display: none;
+    }
+    .ham-menu{
+        display: inline;
+    }
+}

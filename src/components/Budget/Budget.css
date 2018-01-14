@@ -1,0 +1,49 @@
+.budget-container {
+    height: 220px;
+    width: 100%;
+    background-color: white;
+    color: #4A90E2;
+    font-size: 14px;
+    padding: 12px;
+    margin: 0px 0px 20px 0px;
+    box-shadow: 0px 1px 2px 0px gray;
+}
+
+a:link {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.budget-title {
+    float: left;
+}
+
+.total {
+    float: right;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.list-container {
+    font-size: 18px;
+    color: black;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+td:nth-child(even){
+    text-align: right;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}

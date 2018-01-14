@@ -3,13 +3,13 @@ header {
     width: 100%;
     background-color: #38AA5F;
     color: white;
-    padding: 20px;
     position: relative;
 }
   
 header h1 {
     position: absolute;
     bottom: 20px;
+    padding-left: 20px;
     font-size: 24px;
     font-weight: 200;
 }
