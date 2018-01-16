@@ -1,6 +1,8 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './Header.css';
 import Navbar from '../Navbar/Navbar';
+import logo from '../../assets/logo-wh.png';
+import Profile from '../Profile/Profile';
 
 export default class Header extends Component {
 
@@ -8,8 +10,9 @@ export default class Header extends Component {
         return (
             <div>
                 <header>
-                    <h1>Dashboard</h1>
                     <Navbar />
+                    <Profile />
+                    <h1>Dashboard</h1>
                 </header>
             </div>
         )

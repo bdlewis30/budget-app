@@ -5,10 +5,17 @@ header {
     color: white;
     position: relative;
 }
-  
+ 
+.logo {
+    height: 42px;
+    width: 210px;
+    margin: 10px 20px;
+}
+
 header h1 {
-    position: absolute;
-    bottom: 20px;
+    /* position: absolute; */
+    margin-top: 40px;
+    bottom: 0px;
     padding-left: 20px;
     font-size: 24px;
     font-weight: 200;

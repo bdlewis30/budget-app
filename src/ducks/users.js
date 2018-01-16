@@ -1,7 +1,15 @@
 import axios from 'axios';
 
 const initialState = {
-    user: {}
+    user: {
+        picture: 'http://placekitten.com/151/201'
+    },
+    bankAccts: {},
+    creditAccts: {},
+    liabilities: {},
+    balance: {},
+    bills: {},
+    budget: {}
 }
 
 const GET_USER_INFO = 'GET_USER_INFO';

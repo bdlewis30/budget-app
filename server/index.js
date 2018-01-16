@@ -38,7 +38,7 @@ passport.use(new Auth0Strategy({
     scope: 'openid profile'
 }, function (accessToken, refreshToken, extraParams, profile, done) {
     console.log(profile);
-    let { displayName, use_id, picture } = profile;
+    let { displayName, user_id, picture } = profile;
     const db = app.get('db');
     db.find_user([user_id]).then(function (user) {
         if (!user[0]) {

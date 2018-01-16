@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './Navbar.css';
 
 export default class Navbar extends Component {
@@ -21,18 +22,32 @@ export default class Navbar extends Component {
     render() {
         return (
             <div>
-                <div>
+                <div className="ham-pad">
                     <ul className="desktopNav">
-                        <li><a href="http://localhost:3000">Dashboard</a></li>
-                        <li><a href="http://localhost:3000">Bank Accounts</a></li>
-                        <li><a href="http://localhost:3000">Credit Accounts</a></li>
-                        <li><a href="http://localhost:3000">{`Loans & Liabilities`}</a></li>
-                        <li><a href="http://localhost:3000">Balance</a></li>
-                        <li><a href="http://localhost:3000">Bills</a></li>
-                        <li><a href="http://localhost:3000">Budget</a></li>
+                        <Link to="/dashboard"><li>Dashboard</li></Link>
+                        <Link to="/bank-accounts"><li>Bank Accounts</li></Link>
+                        <Link to="/credit-accounts"><li>Credit Accounts</li></Link>
+                        <Link to="/liabilities"><li>{`Loans & Liabilities`}</li></Link>
+                        <Link to="/balance"><li>Balance</li></Link>
+                        <Link to="/bills"><li>Bills</li></Link>
+                        <Link to="/budget"><li>Budget</li></Link>
                     </ul>
                     <div onClick={this.slide} className="ham-menu"></div>
-                    <div className={this.state.slide ? 'mobile-nav slide' : 'ham-menu'}></div>
+                    <div className={this.state.slide ? 'mobile-nav slide' : 'mobile-nav'}>
+                        <ul>
+                            <Link to="/dashboard"><li className="li-mobile">Dashboard</li></Link>
+                            <Link to="/bank-accounts"><li className="li-mobile">Bank Accounts</li></Link>
+                            <Link to="/credit-accounts"><li className="li-mobile">Credit Accounts</li></Link>
+                            <Link to="/liabilities"><li className="li-mobile">{`Loans & Liabilities`}</li></Link>
+                            <Link to="/balance"><li className="li-mobile">Balance</li></Link>
+                            <Link to="/bills"><li className="li-mobile">Bills</li></Link>
+                            <Link to="/budget"><li className="li-mobile">Budget</li></Link>
+                            <hr />
+                            <div onClick={this.slide} className="slide">
+                            <a className={this.state.slide}><li className="li-mobile">Close menu</li></a>
+                            </div>
+                        </ul>
+                    </div>
                 </div>
             </div>
         )
