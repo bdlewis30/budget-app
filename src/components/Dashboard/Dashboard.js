@@ -1,27 +1,19 @@
 import React, { Component } from 'react';
 import './Dashboard.css';
-import { connect } from 'react-redux';
-import { getUserInfo } from '../../ducks/users';
-import BankAccts from '../Accounts/BankAccounts/BankAccts';
-import Header from '../Header/Header';
-import Balance from '../Balance/Balance'
-import Bills from '../Bills/Bills';
-import Budget from '../Budget/Budget';
+import AccountsSnip from '../Snippets/AccountsSnip/AccountSnip';
+import BalanceSnip from '../Snippets/BalanceSnip/BalanceSnip';
+import BillsSnip from '../Snippets/BillsSnip/BillsSnip';
+import BudgetSnip from '../Snippets/BudgetSnip/BudgetSnip';
 
 export default class Dashboard extends Component {
-
-    // componentDidMount() {
-    //     this.props.getUserInfo()
-    // }
 
     render() {
         return (
             <div>
-                <Header />
-                <BankAccts />
-                <Balance />
-                <Bills />
-                <Budget />
+                <AccountsSnip />
+                <BalanceSnip />
+                <BillsSnip />
+                <BudgetSnip />
             </div>
         )
     }

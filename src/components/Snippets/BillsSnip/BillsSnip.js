@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import './Bills.css';
+import './BillsSnip.css';
 
 
-export default class Bills extends Component {
+export default class BillsSnip extends Component {
 
     render() {
         return (
@@ -11,6 +11,7 @@ export default class Bills extends Component {
                     <section className="bills-container">
                         <h1 className="bills-title">Bills Next 30 Days</h1>
                         <div className="total">$2,400.00</div>
+                        <div></div>
                         <section className="list-container">
                             <table>
                                 <tbody>

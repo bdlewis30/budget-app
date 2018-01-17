@@ -9,7 +9,7 @@ export default function Login() {
             <div className="login-main">
                 <div className="button-container">
                     <a href={process.env.REACT_APP_LOGIN}>
-                        <button>Login</button>
+                        <button className="login-button">Login</button>
                     </a>
                 </div>
             </div>
