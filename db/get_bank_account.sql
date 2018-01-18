@@ -1,2 +1,2 @@
 SELECT * FROM Bank_Accounts
-WHERE acct_name = $1;
+WHERE acct_id = $1;

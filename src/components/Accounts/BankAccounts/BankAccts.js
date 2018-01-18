@@ -44,13 +44,19 @@ export default class BankAccts extends Component {
                 <h2>Add Account:</h2>
                 <div className="form-new-acct">
                     <form onSubmit={(event) => this.submitToAccount(event)}>
-                        <label>Account Name:</label><input required className="required" type="text" name="Account_Name" placeholder="Account Name" /><br />
-                        <label>Account Type:</label><input required className="required" type="text" name="Account_Type" placeholder="Account Type" /><br />
-                        <label>Starting Balance:</label><input required className="required" onChange={(e) => this.financial(e.target.value)} onBlur={(e) => this.format(e.target.value)} value={this.state.addZeros} type="text" name="Starting_Balance" placeholder="0.00" /><br />
-                        <label>APR (optional):</label><input type="text" name="APR" placeholder="0.000%" /><br />
-                        <label>Account Number:</label><input required type="text" name="Account_Number" /><br />
-                        <label>Routing Number:</label><input type="text" name="Routing_Number" /><br />
-                        <label>Memo:</label><input type="text" name="Memo" placeholder="Memo"/><br />
+                        <label>Account Name:</label>
+                            <input required className="required" type="text" pattern="[a-zA-Z]*" name="Account_Name" placeholder="Account Name" /><br />
+                        <label>Account Type:</label>
+                            <input required className="required" type="text" name="Account_Type" placeholder="Account Type" /><br />
+                        <label>Starting Balance:</label>
+                            <input required className="required" onChange={(e) => this.financial(e.target.value)} onBlur={(e) => this.format(e.target.value)} value={this.state.addZeros} type="text" name="Starting_Balance" placeholder="0.00" /><br />
+                        <label>Interest:</label>
+                            <input type="number" name="Interest" min="0.000" step="0.001" placeholder="0.00%" /><br />
+                        <label>Account Number:</label>
+                            <input required type="number" name="Account_Number"  placeholder="Account Number"/><br />
+                        <label>Routing Number:</label>
+                            <input type="number" name="Routing_Number" placeholder="Routing number" /><br />
+                        <label>Memo:</label><input type="text" name="Memo" placeholder="Memo" /><br />
                         <button type="submit">Add</button>
                     </form>
                 </div>
