@@ -1,0 +1,1 @@
+SELECT * FROM Checking_Accounts;
