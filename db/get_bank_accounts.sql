@@ -1,1 +1,1 @@
-SELECT * FROM Bank_Accounts
+SELECT * FROM Bank_Accounts;

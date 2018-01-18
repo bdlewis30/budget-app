@@ -88,6 +88,8 @@ app.get('auth/logout', function (req, res) {
     res.redirect('http://localhost:3000/')
 })
 
+// app.post('')
+
 const { SERVER_PORT } = process.env
 app.listen(SERVER_PORT, () => {
     console.log(`Listening on port: ${SERVER_PORT}`)

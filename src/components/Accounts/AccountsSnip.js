@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import './Accounts.css';
+import './AccountsSnip.css';
 
 
-export default class Accounts extends Component {
+export default class AccountsSnip extends Component {
 
     render() {
         return (
