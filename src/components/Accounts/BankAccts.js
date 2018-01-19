@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './BankAccts.css';
+import './Accounts.css';
 
 
 export default class BankAccts extends Component {

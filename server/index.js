@@ -100,8 +100,8 @@ app.get('auth/logout', function (req, res) {
 app.post('/api/accounts/checking', checking_controller.create)
 app.get('/api/accounts/checking', checking_controller.getAll)
 app.get('/api/accounts/checking/:id', checking_controller.getOne)
-// app.put('/api/accounts/checking/:id', checking_controller.update)
-// app.delete('/api/account/checking/:id', checking_controller.delete)
+app.put('/api/accounts/checking/:id', checking_controller.update)
+app.delete('/api/account/checking/:id', checking_controller.delete)
 
 // //Saving
 // app.post('/api/accounts/savings', savings_controller.create)
@@ -111,11 +111,11 @@ app.get('/api/accounts/checking/:id', checking_controller.getOne)
 // app.delete('/api/accounts/savings/:id', savings_controller.delete)
 
 // //Credit
-// app.post('/api/accounts/credit', credit_controller.create)
-// app.get('/api/accounts/credit', credit_controller.getAll)
-// app.get('/api/accounts/credit/:id', credit_controller.getOne)
-// app.put('/api/accounts/credit/:id', credit_controller.update)
-// app.delete('/api/accounts/credit/:id', credit_controller.delete)
+app.post('/api/accounts/credit', credit_controller.create)
+app.get('/api/accounts/credit', credit_controller.getAll)
+app.get('/api/accounts/credit/:id', credit_controller.getOne)
+app.put('/api/accounts/credit/:id', credit_controller.update)
+app.delete('/api/accounts/credit/:id', credit_controller.delete)
 
 // //Loans
 // app.post('/api/accounts/loans', loan_controller.create)

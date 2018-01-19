@@ -1,5 +1,5 @@
 .budget-container {
-    height: 220px;
+    height: 250px;
     width: 100%;
     background-color: white;
     color: #4A90E2;
@@ -24,7 +24,8 @@ a:link {
     margin-bottom: 10px;
 }
 
-.list-container {
+.budget-list-container {
+    height: 80%;
     font-size: 18px;
     color: black;
 }
@@ -46,4 +47,8 @@ td:nth-child(even){
 
 tr:nth-child(even) {
     background-color: #dddddd;
+}
+
+.bottom-padding {
+    height: 20px;
 }

@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import './LoanLiab.css';
+import './Accounts.css';
 
-export default class LoanLiab extends Component {
+export default class CheckingAcct extends Component{
 
     render(){
         return(
             <div>
-                <h1>{`Loans & Liabilities`}</h1>
+                <h1>Checking Accounts</h1>
             </div>
         )
     }

@@ -1,5 +1,5 @@
 .balance-container {
-    height: 135px;
+    height: 100%;
     width: 100%;
     background-color: white;
     color: #4A90E2;
@@ -20,7 +20,7 @@ a:link {
     align-items: center;
     font-size: 36px;
     color: #417505;
-    margin: 10px 0px 18px 0px;
+    margin: 10px 0px 12px 0px;
 }
 
 .dc-container {
@@ -33,10 +33,14 @@ a:link {
     font-size: 18px;
 }
 
-.debits {
+.debit, .credit {
+    margin-bottom: 20px;
+}
+
+.green {
     color:  #417505;
 }
 
-.credits {
+.red {
     color: #D0021B;
 }

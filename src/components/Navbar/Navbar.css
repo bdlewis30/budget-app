@@ -48,6 +48,44 @@ a:hover {
     display: none;
 }
 
+.sub-menu {
+    font-size: 14px;
+    margin-left: 30px;
+}
+
+.sub-menu:before {
+    content: "> ";
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    width: 200px;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    color: cornflowerblue;
+}
+
+.dropdown:hover a {
+    color: cornflowerblue;
+}
+
+.dropdown:hover a:hover {
+    color: rgb(237, 150, 100);
+}
+
 @media(max-width: 768px){
     .desktopNav {
         display: none;
@@ -67,24 +105,30 @@ a:hover {
 
 @media(max-width: 414px) {
     .mobile-nav{
-        height: 45vh;
+        height: 56vh;
     }
 }
 
 @media(max-width: 412px) {
     .mobile-nav{
-        height: 50vh;
+        height: 60vh;
     }
 }
 
 @media(max-width: 375px) {
     .mobile-nav{
-        height: 49vh;
+        height: 60vh;
     }
 }
 
 @media(max-width: 360px) {
     .mobile-nav{
-        height: 51vh;
+        height: 62vh;
+    }
+}
+
+@media(min-width: 768px) {
+    .mobile-nav{
+        height: 40vh;
     }
 }

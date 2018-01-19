@@ -12,7 +12,7 @@ export default class BillsSnip extends Component {
                         <h1 className="bills-title">Bills Next 30 Days</h1>
                         <div className="total">$2,400.00</div>
                         <div></div>
-                        <section className="list-container">
+                        <section className="bills-list-container">
                             <table>
                                 <tbody>
                                     <tr>
@@ -38,14 +38,6 @@ export default class BillsSnip extends Component {
                                     <tr>
                                         <td>Life Insurance</td>
                                         <td>45.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Internet</td>
-                                        <td>55.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Netflix</td>
-                                        <td>10.00</td>
                                     </tr>
                                 </tbody>
                             </table>
