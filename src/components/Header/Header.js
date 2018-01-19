@@ -12,12 +12,28 @@ export default class Header extends Component {
     }
 
     headingText(){
-        if(window.location.hash === '#/bank-accounts'){
-            return 'Bank Accounts'
+        if(window.location.hash === '#/accounts/checking-accounts') {
+            return 'Checking Accounts'
+        } 
+        else if(window.location.hash === '#/accounts/savings-accounts') {
+            return 'Savings Accounts'
+        } 
+        else if(window.location.hash === '#/accounts/credit-accounts') {
+            return 'Credit Accounts'
         }
-        else {
-            return 'Dashboard'
+        else if(window.location.hash === '#/accounts/loans') {
+            return 'Loans & Liabilities'
         }
+        else if(window.location.hash === '#/balance') {
+            return 'Balance Sheet'
+        }
+        else if (window.location.hash === '#/bills') {
+            return 'Bills'
+        }
+        else if(window.location.hash === '#/budget') {
+            return 'Budget'
+        }
+        else return 'Dashboard'
     }
 
     render() {
