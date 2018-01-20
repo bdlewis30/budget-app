@@ -25,9 +25,9 @@ export default class Navbar extends Component {
                 <div className="ham-pad">
                     <ul className="desktopNav">
                         <Link to="/dashboard"><li>Dashboard</li></Link>
-                        <div class="dropdown">
+                        <div className="dropdown">
                             <li>Bank Accounts</li>
-                            <ul class="dropdown-content">
+                            <ul className="dropdown-content">
                                 <Link to="/accounts/checking-accounts"><li>Checking Accounts</li></Link>
                                 <Link to="/accounts/savings-accounts"><li>Savings Accounts</li></Link>
                                 <Link to="/accounts/credit-accounts"><li>Credit Accounts</li></Link>

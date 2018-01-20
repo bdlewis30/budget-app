@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './BudgetSnip.css';
 
 export default class BudgetSnip extends Component {
@@ -6,7 +7,7 @@ export default class BudgetSnip extends Component {
     render() {
         return (
             <div>
-                <a href="http://localhost:3000">
+                <Link to="/budget">
                     <section className="budget-container">
                         <h1 className="budget-title">Budget</h1>
                         <div className="total">$2,705.00</div>
@@ -33,7 +34,7 @@ export default class BudgetSnip extends Component {
                             </table>
                         </section>
                     </section>
-                </a>
+                </Link>
             </div>
         )
     }

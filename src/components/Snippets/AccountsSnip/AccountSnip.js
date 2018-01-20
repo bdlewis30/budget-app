@@ -12,26 +12,26 @@ export default class AccountsSnip extends Component {
         return (
             <div>
                 {/* <Route path="/bank-accounts" component={BankAccts} /> */}
-                <Route path="/accounts/checking" component={CheckingAcct} />
-                <Route path="/accounts/savings" component={SavingsAcct} />
-                <Route path="/accounts/credit" component={CreditAccts} />
+                <Route path="/accounts/checking-accounts" component={CheckingAcct} />
+                <Route path="/accounts/savings-accounts" component={SavingsAcct} />
+                <Route path="/accounts/credit-accounts" component={CreditAccts} />
                 <Route path="/accounts/loans" component={Loans} />
 
                 <section className="accts-container-snip">
                     <h1>Accounts</h1>
                     <div className="content">
                         <div className="box-container">
-                            <Link to="/accounts/checking">
+                            <Link to="/accounts/checking-accounts">
                                 <section className="box-1">Checking Accounts
                             <div className="amount">$580.00</div>
                                 </section>
                             </Link>
-                            <Link to="/accounts/savings">
+                            <Link to="/accounts/savings-accounts">
                                 <section className="box-2">Savings Accounts
                             <div className="amount">$1000.00</div>
                                 </section>
                             </Link>
-                            <Link to="/accounts/credit">
+                            <Link to="/accounts/credit-accounts">
                                 <section className="box-3">Credit Accounts
                             <div className="amount">$300.00</div>
                                 </section>

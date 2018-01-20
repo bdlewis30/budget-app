@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './BalanceSnip.css';
 
 export default class BalanceSnip extends Component {
@@ -6,7 +7,7 @@ export default class BalanceSnip extends Component {
     render() {
         return (
             <div>
-                <a href="http://localhost:3000">
+                <Link to="/balance">
                     <section className="balance-container">
                         <h1>Balance</h1>
                         <div className="bal-amt">$500.00</div>
@@ -15,7 +16,7 @@ export default class BalanceSnip extends Component {
                             <div className="credit">Credits: <span className="red">$1,200.00</span></div>
                         </section>
                     </section>
-                </a>
+                </Link>
             </div>
         )
     }

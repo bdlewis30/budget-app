@@ -1,0 +1,56 @@
+.credit-ledger-container {
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    color: #4A90E2;
+    font-size: 14px;
+    padding: 12px;
+    margin: 5px 0px 5px 0px;
+    box-shadow: 0px 1px 2px 0px gray;
+    display: flex;
+    justify-content: space-between;
+    /* flex-direction: column; */
+}
+
+.credit-ledger-column{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap; 
+    justify-content: space-between;
+    align-content: space-between;
+    font-size: 12px;
+    font-weight: 300;
+}
+
+/* .credit-ledger-date {
+   
+}
+
+.credit-ledger-acct {
+   
+}
+
+credit-ledger-debit {
+
+}
+
+credit-ledger-credit {
+    
+}
+
+.credit-ledger-bal {
+    
+} */
+
+.credit-ledger-begin-bal {
+    font-weight: 300;
+    color: red;
+}
+
+.credit-ledger-input {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 12px;
+    font-weight: 300;
+}
