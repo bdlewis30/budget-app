@@ -6,5 +6,6 @@ start_balance MONEY,
 interest DECIMAL (5,3), 
 acct_num NUMERIC(4), 
 routing_num NUMERIC (9), 
-memo VARCHAR(180) 
+memo VARCHAR(180),
+user_id INTEGER REFERENCES users (id)
 );

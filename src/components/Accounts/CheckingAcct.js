@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Accounts.css';
+import axios from 'axios';
 
 
 export default class CheckingAcct extends Component {
@@ -10,6 +11,7 @@ export default class CheckingAcct extends Component {
         this.state = {
             addZeros: 0.00,
             apr: 0.000
+
         }
         this.financial = this.financial.bind(this);
     }
@@ -30,11 +32,11 @@ export default class CheckingAcct extends Component {
         })
     }
 
-    // submitToAccount(event){
-    //     alert('Form has been submitted')
-    //     event.preventDefault()
-    //     axios.post('url',).then()
-    // }
+    submitAccount(event){
+        alert('The account has been created.')
+        event.preventDefault()
+        axios.post('/api/accounts/checking').then()
+    }
 
 
 
@@ -43,11 +45,11 @@ export default class CheckingAcct extends Component {
             <div className="accts-container">
                 <h2>Add Account:</h2>
                 <div className="form-new-acct">
-                    <form onSubmit={(event) => this.submitToAccount(event)}>
+                    <form onSubmit={(event) => this.submitAccount(event)}>
                         <label>Account Name:</label>
-                            <input required className="required" type="text" pattern="[a-zA-Z]*" name="Account_Name" placeholder="Account Name" /><br />
+                            <input required className="required" type="text" pattern="^[a-zA-Z0-9_]+( [a-zA-Z0-9_]+)*$" name="Account_Name" placeholder="Account Name" /><br />
                         <label>Account Type:</label>
-                            <input required className="required" type="text" name="Account_Type" placeholder="Account Type" /><br />
+                            <input required className="required" type="text" name="Account_Type" value="Checking" /><br />
                         <label>Starting Balance:</label>
                             <input required className="required" onChange={(e) => this.financial(e.target.value)} onBlur={(e) => this.format(e.target.value)} value={this.state.addZeros} type="text" name="Starting_Balance" placeholder="0.00" /><br />
                         <label>Interest:</label>

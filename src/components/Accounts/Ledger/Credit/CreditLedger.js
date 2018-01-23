@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import './CreditLedger.css';
+import axios from 'axios';
+
+// get data from router.read_all_credit.sql
+
 
 export default class CreditData extends Component {
 
@@ -56,10 +60,10 @@ export default class CreditData extends Component {
                     <div className="credit-ledger-bal-amount">1500.00</div>
                     <div className="credit-ledger-bal-amount">1400.00</div>
                     <div className="credit-ledger-bal-amount">1200.00</div>
-                    <div className="credit-ledger-bal-amount">1150.00</div>
-                    <div className="credit-ledger-bal-amount">1100.00</div>
-                    <div className="credit-ledger-bal-amount">1120.00</div>
-                    <div className="credit-ledger-bal-amount">1135.00</div>
+                    <div className="credit-ledger-bal-amount">1050.00</div>
+                    <div className="credit-ledger-bal-amount">1000.00</div>
+                    <div className="credit-ledger-bal-amount">1020.00</div>
+                    <div className="credit-ledger-bal-amount">1035.00</div>
                 </section>
             </div>
         )

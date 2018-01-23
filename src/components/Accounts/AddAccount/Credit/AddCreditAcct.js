@@ -19,12 +19,12 @@ export default class AddCreditAcct extends Component {
         this.postCreditAcct = this.postCreditAcct.bind(this);
     }
 
-    postCreditAcct(){
-        // let body = {acct_name: this.state.acc_name, acct_type: this.state.acct_type, start_balance: this.state.start_balance, apr: this.state.apr, acct_num: this.state.acct_num, memo: this.state.memo}
+    postCreditAcct(e){
+        e.preventDefault();
         axios.post('/api/accounts/credit', this.state).then(res => {
-            console.lof(res)
+            console.log(res)
             let creditAccount = res.data
-            this.props.history.push(`/accounts/creditAccount${creditAccount.id}`)
+            
         }).catch(console.log)
     }
 
@@ -35,19 +35,19 @@ export default class AddCreditAcct extends Component {
             <div className="accts-container">
                 <h2>Add Account:</h2>
                 <div className="form-new-acct">
-                    <form onSubmit={(event) => this.postCreditAcct(event)}>
+                    <form>
                         <label>Account Name:</label>
-                            <input required className="required" type="text" pattern="[a-zA-Z]*" name="Account_Name" placeholder="Account Name" /><br />
+                            <input required className="required" type="text" pattern="^[a-zA-Z0-9_]+( [a-zA-Z0-9_]+)*$" name="Account_Name" placeholder="Account Name" /><br />
                         <label>Account Type:</label>
-                            <input required className="required" type="text" name="Account_Type" placeholder="Account Type" /><br />
+                            <input required className="required" type="text" name="Account_Type" defaultValue="Credit" /><br />
                         <label>Starting Balance:</label>
-                            <input required className="required" onChange={(e) => this.financial(e.target.value)} onBlur={(e) => this.format(e.target.value)} value={this.state.addZeros} type="text" name="Starting_Balance" placeholder="0.00" /><br />
+                            <input required className="required" type="text" name="Starting_Balance" placeholder="0.00" /><br />
                         <label>APR:</label>
                             <input type="number" name="Interest" min="0.000" step="0.001" placeholder="0.00%" /><br />
                         <label>Account Number:</label>
                             <input required type="number" name="Account_Number"  placeholder="Account Number"/><br />
                         <label>Memo:</label><input type="text" name="Memo" placeholder="Memo" /><br />
-                        <button type="submit">Add</button>
+                        <button onClick={(e) => this.postCreditAcct(e)}>Add</button>
                     </form>
                 </div>
             </div>

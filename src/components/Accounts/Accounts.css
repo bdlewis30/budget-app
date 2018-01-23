@@ -71,6 +71,6 @@ h2 {
 @media(max-width: 768px){
     .form-new-acct button{
         width: 90%;
-        background: linear-gradient(top, #245DB2, rgb(76, 125, 199));
+        background: linear-gradient(0deg, #245DB2, rgb(76, 125, 199));
     }
 }
