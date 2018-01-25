@@ -9,6 +9,11 @@ const balance_controller = require('../controllers/balance_controller');
 const bills_controller = require('../controllers/bills_controller');
 const budget_controller = require('../controllers/budget_controller');
 
+// Accounts
+// router.post('/account', accounts_controller.create)
+// router.get('/accounts', accounts_controller.getAll)
+// router.get('/accounts/:acct_type', accounts_controller.getOne)
+
 //Checking
 router.post('/accounts/checking', checking_controller.create)
 router.get('/accounts/checking-accounts', checking_controller.getAll)

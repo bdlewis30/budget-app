@@ -25,15 +25,6 @@ export function getUserInfo() {
     }
 }
 
-// export function getCheckingAccounts() {
-//     let checkingAccounts = axios.get('/api/accounts/checking-accounts').then(res => {
-//         return res.data;
-//     })
-//     return {
-//         type: GET_CHECKING_ACCOUNTS,
-//         payload: checkingAccounts
-//     }
-// }
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {

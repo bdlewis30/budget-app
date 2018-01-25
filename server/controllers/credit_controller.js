@@ -16,6 +16,7 @@ module.exports = {
     getAll: (req, res) => {
         const db = req.app.get('db')
         const user_id = req.headers['x-user-id'];
+        const {params} = req;
 
         db.accounts.credit.read_all_credit([params.id, user_id])
         .then((credit) => res.status(200).send(credit))

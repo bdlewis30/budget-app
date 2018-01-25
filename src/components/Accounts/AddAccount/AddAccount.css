@@ -35,7 +35,23 @@ h2 {
     text-align: right;
     border-radius: 5px; 
     border: solid 1px gray;
+}
+
+.form-new-acct input[type="text"] {
     padding-right: 5px;
+}
+.form-new-acct input[type="number"] {
+    padding-right: 0px;
+}
+.form-new-acct input[type="date"] {
+    text-align: right;
+}
+
+.account-type {
+    width: 150px;
+    position: absolute;
+    right: 25px;
+    display: inline-block;
 }
 
 .form-new-acct button {

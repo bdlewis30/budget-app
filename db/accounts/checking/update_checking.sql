@@ -5,4 +5,5 @@ SET start_balance = $3,
 SET acct_num = $4,
 SET routing_num = $5,
 SET memo = $6,
-WHERE acct_id = $7;
+WHERE acct_id = $7
+AND user_id = $8;

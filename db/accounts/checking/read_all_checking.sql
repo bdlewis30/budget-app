@@ -1,1 +1,2 @@
-SELECT * FROM Checking_Accounts;
+SELECT * FROM Checking_Accounts
+WHERE user_id = $1;

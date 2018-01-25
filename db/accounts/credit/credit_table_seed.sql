@@ -1,5 +1,6 @@
 CREATE TABLE IF NOT EXISTS Credit_Accounts (
-acct_id SERIAL PRIMARY KEY, 
+acct_id SERIAL PRIMARY KEY,
+date DATE, 
 acct_name VARCHAR(180), 
 acct_type VARCHAR(12), 
 start_balance MONEY, 
