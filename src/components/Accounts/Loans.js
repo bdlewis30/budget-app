@@ -1,12 +1,22 @@
 import React, {Component} from 'react';
-import './Accounts.css';
+import './AddAccount.css';
+// import axios from 'axios';
 
 export default class Loans extends Component {
+    
+    constructor() {
+        super();
+
+        this.state = {
+
+        }
+        
+    }
 
     render(){
         return(
             <div>
-                <h1>{`Loans & Liabilities`}</h1>
+                <h1>Loans</h1>
             </div>
         )
     }

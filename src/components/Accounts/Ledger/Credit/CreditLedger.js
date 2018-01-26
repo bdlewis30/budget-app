@@ -3,22 +3,18 @@ import './CreditLedger.css';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { getUserInfo } from '../../../../reducer/users';
+import AddAccount from '../../AddAccount';
+import DebitsCredits from '../../../DebitsCredits';
 
 // get data from router.read_all_credit.sql
 
 class CreditLedger extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
-            credit: [],
-            date: [],
-            accountName: [],
-            debit: [],
-            credit: [],
-            balance: [],
             disabled: 'disabled',
-            showInput: false
+            showAddAccount: false,
         }
     }
 
@@ -32,85 +28,33 @@ class CreditLedger extends Component {
         })
     }
 
-    
-
     render() {
         return (
             <div className="credit-ledger-container">
+                <h2>Credit Balance</h2>
                 <section className="credit-ledger-header">
-                    <h2>Credit Balance</h2>
-                    <select>
+                    <select className="acct-dropdown">
                         <option value="Select Account">--Select Account--</option>
                         <option value="Beehive">Beehive</option>
                         <option value="First Tech">First Tech</option>
                     </select>
                     <br />
                     <br />
+                    <div className="buttons-container">
+                        <button className="btn" onClick={() => {
+                            this.setState({
+                                showAddAccount: true
+                            })
+                        }}
+                        >Add Account</button>
+                        <button className="btn">Add Transaction</button>
+                        <button className="btn">Update Transaction</button>
+                    </div>
                 </section>
-                <button onClick={() => {
-                    this.setState({
-                        showInput: true
-                    })
-                }}
-                >Add Account</button>
-                {this.state.showInput ? <CreditLedger /> : null}
                 <br /><br />
-                <div className="ledger-columns">
-                    <section>
-                        <div className="column-header">Date</div>
-                        <div>2017/3/07</div>
-                        <div>2017/3/07</div>
-                        <div>2017/3/08</div>
-                        <div>2017/3/15</div>
-                        <div>2017/3/27</div>
-                        <div>2017/4/05</div>
-                        <div>2017/4/16</div>
-                        <div>2017/4/18</div>
-                    </section>
-                    <section>
-                        <div className="column-header">Account</div>
-                        <div className="overflow">Mountain America Is the best</div>
-                        <div className="overflow">Mountain America</div>
-                        <div className="overflow">Mountain America</div>
-                        <div className="overflow">Mountain America</div>
-                        <div className="overflow">Mountain America</div>
-                        <div className="overflow">Mountain America</div>
-                        <div className="overflow">Mountain America</div>
-                        <div className="overflow">Mountain America</div>
-                    </section>
-                    <section>
-                        <div className="column-header">Debit</div>
-                        <div>-</div>
-                        <div>500.00</div>
-                        <div>100.00</div>
-                        <div>200.00</div>
-                        <div>150.00</div>
-                        <div>50.00</div>
-                        <div>-</div>
-                        <div>-</div>
-                    </section>
-                    <section>
-                        <div className="column-header">Credit</div>
-                        <div>-</div>
-                        <div>-</div>
-                        <div>-</div>
-                        <div>-</div>
-                        <div>-</div>
-                        <div>-</div>
-                        <div>20.00</div>
-                        <div>15.00</div>
-                    </section>
-                    <section>
-                        <div className="column-header">Bal.</div>
-                        <div>2000.00</div>
-                        <div>1500.00</div>
-                        <div>1400.00</div>
-                        <div>1200.00</div>
-                        <div>1050.00</div>
-                        <div>1000.00</div>
-                        <div>1020.00</div>
-                        <div>1035.00</div>
-                    </section>
+                {this.state.showAddAccount ? <AddAccount /> : null}
+                <div>
+                    <DebitsCredits />
                 </div>
             </div >
         )

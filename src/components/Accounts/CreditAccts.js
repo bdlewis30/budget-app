@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import AddCreditAcct from './AddAccount/AddCreditAcct';
 import CreditLedger from './Ledger/Credit/CreditLedger';
 
 export default class CreditAccts extends Component {
@@ -8,7 +7,6 @@ export default class CreditAccts extends Component {
         return(
             <div>
                 <CreditLedger />
-                <AddCreditAcct />
             </div>
         )
     }

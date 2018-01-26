@@ -13,3 +13,27 @@ h1 {
   font-size: 14px;
 }
 
+table {
+  border-collapse: collapse;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 20px;
+  table-layout:fixed;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+  text-overflow: hidden;
+  text-wrap: no-wrap;
+  width: 10%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  color: #4A90E2;
+}

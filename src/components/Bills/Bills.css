@@ -28,22 +28,3 @@ a:link {
     font-size: 18px;
     color: black;
 }
-
-table {
-    border-collapse: collapse;
-    width: 100%;
-}
-
-td {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-}
-
-td:nth-child(even){
-    text-align: right;
-}
-
-tr:nth-child(even) {
-    background-color: #dddddd;
-}

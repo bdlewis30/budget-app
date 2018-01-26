@@ -1,7 +1,17 @@
 import React, {Component} from 'react';
-import './Accounts.css';
+import './AddAccount.css';
+// import axios from 'axios';
 
 export default class SavingsAcct extends Component{
+
+    constructor() {
+        super();
+
+        this.state = {
+
+        }
+        
+    }
 
     render(){
         return(

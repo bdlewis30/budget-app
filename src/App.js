@@ -12,7 +12,6 @@ import Bills from './components/Bills/Bills';
 import Budget from './components/Budget/Budget';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
-import axios from 'axios';
 
 class App extends Component {
   

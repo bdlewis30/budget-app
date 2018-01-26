@@ -11,7 +11,7 @@ const initialState = {
 }
 
 const GET_USER_INFO = 'GET_USER_INFO';
-const GET_CHECKING_ACCOUNTS = 'GET_CHECKING_ACCOUNTS';
+// const GET_CHECKING_ACCOUNTS = 'GET_CHECKING_ACCOUNTS';
 const ADD_ACCOUNT = 'ADD_ACCOUNT';
 
 export function getUserInfo() {
@@ -35,21 +35,21 @@ export default function reducer(state = initialState, action) {
                 case 'credit':
                     const credit = state.accounts.credit;
                     credit.push(action.payload);
-                    return Object.assign({}, state, { accounts: { credit: credit }});
+                    return Object.assign({}, state, { accounts: { credit: credit } });
                 case 'checking':
                     const checking = state.accounts.checking;
                     checking.push(action.payload);
-                    return Object.assign({}, state, { accounts: { checking: checking }});
+                    return Object.assign({}, state, { accounts: { checking: checking } });
                 case 'savings':
                     const saving = state.accounts.savings;
                     saving.push(action.payload);
-                    return Object.assign({}, state, { accounts: { savings: saving }});
+                    return Object.assign({}, state, { accounts: { savings: saving } });
                 case 'loans':
                     const loans = state.accounts.loans;
                     loans.push(action.payload);
-                    return Object.assign({}, state, { accounts: { loans: loans }});
+                    return Object.assign({}, state, { accounts: { loans: loans } });
             }
-            return state;
+            break;
         default:
             return state;
     }
