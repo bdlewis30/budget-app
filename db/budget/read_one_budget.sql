@@ -1,3 +1,3 @@
 SELECT * FROM Budget
-WHERE acct_id = $1
-AND user_id = $2;
+WHERE id = $1
+AND acct_id = $2;

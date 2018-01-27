@@ -1,20 +1,14 @@
-const handleErrors = (error, response) => {
+const handleErrors = (error, res) => {
     res.status(500).send(error);
 }
 
 const controller = {
     getAll: (req, res) => {
         const db = req.app.get('db')
-        const user_id = req.headers['x-user-id'];
-        let promise;
+        const acct_id = parseInt(req.params.acctId);
 
-        if (req.query.acct_type) {
-            promise = db.accounts.read_accounts_type([user_id, req.query.acct_type])
-        } else {
-            // Send back all rows;
-            promise = db.accounts.read_all_accounts([user_id])
-        }
-        promise.then((rows) => {
+        db.transactions.read_all_transactions([acct_id])
+        .then((rows) => {
             res.status(200).send(rows)
         }).catch(error => handleErrors(error,res))
     },

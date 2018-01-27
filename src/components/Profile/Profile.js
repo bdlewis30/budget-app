@@ -2,16 +2,11 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {getUserInfo} from '../../reducer/users';
 import './Profile.css';
-import axios from 'axios';
 
 class Profile extends React.Component {
 
     componentDidMount(){
-        this.props.getUserInfo()
-        this.props.getUserInfo().then(data => {
-            console.log({data});
-            axios.defaults.headers.common['x-user-id'] = data.value.id;
-        });
+        this.props.getUserInfo();
     }
 
 
@@ -29,8 +24,8 @@ class Profile extends React.Component {
 function mapStateToProps(state){
     return{
         picture: state.user.picture,
-        name: state.user.name
+        name: state.user.name,
     }
 }
 
-export default connect(mapStateToProps, {getUserInfo})(Profile);
+export default connect(mapStateToProps, { getUserInfo })(Profile);

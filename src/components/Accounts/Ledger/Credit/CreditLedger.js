@@ -5,21 +5,23 @@ import { connect } from 'react-redux';
 import { getUserInfo } from '../../../../reducer/users';
 import AddAccount from '../../AddAccount';
 import DebitsCredits from '../../../DebitsCredits';
+import _ from 'lodash';
 
-// get data from router.read_all_credit.sql
 
 class CreditLedger extends Component {
     constructor(props) {
-        super(props);
+        super();
 
         this.state = {
             disabled: 'disabled',
             showAddAccount: false,
+            credit: [],
+            selectedAccount: 0
         }
     }
 
     componentDidMount() {
-        let promise = axios.get('/api/accounts/credit-accounts')
+        let promise = axios.get('/api/accounts?acct_type=credit')
         promise.then(res => {
             console.log(res)
             this.setState({
@@ -28,15 +30,24 @@ class CreditLedger extends Component {
         })
     }
 
+    chooseAccount = (event) => {
+        const id = event.target.value;
+        console.log(id);
+        this.setState({ selectedAccount: id });
+        // get transactions with selectedAccount 
+    }
+
     render() {
+        const options = _.map(this.state.credit, (credit, index) => {
+            return <option key={credit.id} value={credit.id}>{credit.acct_name}</option>
+        })
         return (
             <div className="credit-ledger-container">
                 <h2>Credit Balance</h2>
                 <section className="credit-ledger-header">
-                    <select className="acct-dropdown">
-                        <option value="Select Account">--Select Account--</option>
-                        <option value="Beehive">Beehive</option>
-                        <option value="First Tech">First Tech</option>
+                    <select className="acct-dropdown" value={this.state.selectedAccount} onChange={this.chooseAccount}>
+                        <option value="0">--Select An Account--</option>
+                        {options}
                     </select>
                     <br />
                     <br />
@@ -52,9 +63,9 @@ class CreditLedger extends Component {
                     </div>
                 </section>
                 <br /><br />
-                {this.state.showAddAccount ? <AddAccount /> : null}
+                {this.state.showAddAccount ? <AddAccount acctType="credit"/> : null}
                 <div>
-                    <DebitsCredits />
+                    <DebitsCredits acctId={this.state.selectedAccount} />
                 </div>
             </div >
         )

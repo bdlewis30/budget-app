@@ -1,55 +1,47 @@
 import axios from 'axios';
 
 const initialState = {
-    user: {},
-    accounts: {
-        credit: [],
-        checking: [],
-        savings: [],
-        loans: []
-    }
+    user: {}
 }
 
 const GET_USER_INFO = 'GET_USER_INFO';
-// const GET_CHECKING_ACCOUNTS = 'GET_CHECKING_ACCOUNTS';
-const ADD_ACCOUNT = 'ADD_ACCOUNT';
 
 export function getUserInfo() {
+
+    const sessionUser = window.sessionStorage.getItem('user');
+    if (sessionUser) {
+        console.log('session');
+        return {
+            type: GET_USER_INFO,
+            payload: JSON.parse(sessionUser),
+        };
+    }
     let userData = axios.get('/auth/me').then(res => {
         console.log(res);
         return res.data;
-    })
+    },
+    res => {
+        window.location.href='/';
+    }
+)
+
     return {
         type: GET_USER_INFO,
-        payload: userData
-    }
+        payload: userData,
+    };
 }
-
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
-        case GET_USER_INFO + '_FULFILLED':
+        case GET_USER_INFO:
+            console.log(GET_USER_INFO);
+            axios.defaults.headers.common['x-user-id'] = action.payload.id;
             return Object.assign({}, state, { user: action.payload })
-        case ADD_ACCOUNT:
-            switch (action.payload.acct_type) {
-                case 'credit':
-                    const credit = state.accounts.credit;
-                    credit.push(action.payload);
-                    return Object.assign({}, state, { accounts: { credit: credit } });
-                case 'checking':
-                    const checking = state.accounts.checking;
-                    checking.push(action.payload);
-                    return Object.assign({}, state, { accounts: { checking: checking } });
-                case 'savings':
-                    const saving = state.accounts.savings;
-                    saving.push(action.payload);
-                    return Object.assign({}, state, { accounts: { savings: saving } });
-                case 'loans':
-                    const loans = state.accounts.loans;
-                    loans.push(action.payload);
-                    return Object.assign({}, state, { accounts: { loans: loans } });
-            }
-            break;
+        case GET_USER_INFO + '_FULFILLED':
+            console.log('fulfilled');
+            axios.defaults.headers.common['x-user-id'] = action.payload.id;
+            window.sessionStorage.setItem('user',JSON.stringify(action.payload))
+            return Object.assign({}, state, { user: action.payload })
         default:
             return state;
     }

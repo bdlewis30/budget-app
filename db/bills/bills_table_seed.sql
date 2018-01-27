@@ -1,9 +1,8 @@
 CREATE TABLE IF NOT EXISTS Bills (
-    acct_id SERIAL PRIMARY KEY,
-    dueDate DATE,
+    id SERIAL PRIMARY KEY,
+    due_date DATE,
     occurrence VARCHAR(180),
-    acct_name VARCHAR(180),
     category VARCHAR(180), 
     amount MONEY,
-    user_id INTEGER REFERENCES users (id)
+    acct_id INTEGER REFERENCES Accounts (id)
 );

@@ -4,22 +4,21 @@ import { connect } from 'react-redux';
 import { getUserInfo } from '../../reducer/users';
 import './AddAccount.css';
 
-class AddAccount extends Component {
+class Transaction extends Component {
 
     constructor() {
         super();
 
         this.state = {
-            creditAccount: [],
+            transactions: [],
             disabled: 'disabled',
             showLedger: false,
+            start_bal: 0,
             date: 0,
-            acctName: '',
-            startBal: 0,
-            apr: 0,
-            acctNum: 0,
-            routingNum: 0,
-            memo: ''
+            acct_name: '',
+            debit: 0,
+            credit: 0,
+            balance: 0
         }
     
     }
@@ -47,45 +46,31 @@ class AddAccount extends Component {
 
     handleAccountName = (value) => {
         this.setState({
-            acctName: value
+            acct_name: value
         })
         console.log(this.state.acctName)
     }
 
     handleStartBal = (value) => {
         this.setState({
-            startBal: value
+            start_bal: value
         })
         console.log(this.state.startBal)
     }
 
-    handleApr = (value) => {
+    handleDebit = (value) => {
         this.setState({
-            apr: value
+            debit: value
         })
-        console.log(this.state.apr)
     }
 
-    handleAcctNum = (value) => {
+    handleCredit = (value) => {
         this.setState({
-            acctNum: value
+            credit: value
         })
-        console.log(this.state.acctNum)
     }
 
-    handleRoutingNum = (value) => {
-        this.setState({
-            routingNum: value
-        })
-        console.log(this.state.routingNum)
-    }
-
-    handleMemo = (value) => {
-        this.setState({
-            memo: value
-        })
-        console.log(this.state.memo)
-    }
+    handleBalance
 
     optionDisabled = (value) => {
         const savings = "Savings";
@@ -131,7 +116,7 @@ class AddAccount extends Component {
                     <input required type="text" name="Account_Name" placeholder="Account Name" onChange={(e) => this.handleAccountName(e.target.value)} /><br />
                     <label>Starting Balance:</label><br />
                     $<input required type="number" pattern="^[0-9]+$" min="0" name="Starting_Balance" placeholder="0.00" onChange={(e) => this.handleStartBal(e.target.value)} /><br />
-                    <label>APR/Interest:</label><br />
+                    <label>APR:</label><br />
                     <input type="number" pattern="^[0-9]+$" step="any" min="0" name="APR" placeholder="0.00%" onChange={(e) => this.handleApr(e.target.value)} /><br />
                     <label>Account Number (last 4 digits):</label><br />
                     <input required type="number" pattern="^[0-9]+$" name="Account_Number" placeholder="Account Number" onChange={(e) => this.handleAcctNum(e.target.value)} /><br />
@@ -157,4 +142,4 @@ function mapStatetoProps(state) {
     }
 }
 
-export default connect(mapStatetoProps, { getUserInfo })(AddAccount);
+export default connect(mapStatetoProps, { getUserInfo })(Transaction);

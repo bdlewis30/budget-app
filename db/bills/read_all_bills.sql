@@ -1,2 +1,2 @@
 SELECT * FROM Bills
-WHERE user_id = $1;
+WHERE acct_id = $1;

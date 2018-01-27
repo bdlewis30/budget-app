@@ -1,3 +1,3 @@
-DELETE * FROM Bills
-WHERE acct_id = $1
-AND user_id = $2;
+DELETE FROM Bills
+WHERE id = $1
+AND acct_id = $2;

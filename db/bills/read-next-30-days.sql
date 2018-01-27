@@ -1,4 +1,3 @@
 SELECT * FROM Bills
-WHERE month = $1
-AND acct_id = $2
-AND user_id = $3
+WHERE due_date<=date_trunc('day',now()+interval '1 month')
+AND acct_id = $1;
