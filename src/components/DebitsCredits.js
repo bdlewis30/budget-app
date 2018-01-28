@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './DebitsCredits.css';
 import _ from 'lodash';
+import Transaction from './Transaction';
 
 export default class DebitsCredits extends Component {
 
@@ -9,7 +10,12 @@ export default class DebitsCredits extends Component {
         super();
 
         this.state = {
-            transactions: []
+            transactions: [],
+            date: [],
+            account: [],
+            debit: [],
+            credit: [],
+            balance: []
         }
         this.getTransactions(props.acctId);
     }
@@ -36,9 +42,9 @@ export default class DebitsCredits extends Component {
                 <tr key={index}>
                     <td>{t.date}</td>
                     <td>{t.acct_name}</td>
-                    <td className="currency"></td>
-                    <td className="currency">500.00</td>
-                    <td className="currency">500.00</td>
+                    <td className="currency">{t.debits}</td>
+                    <td className="currency">{t.credits}</td>
+                    <td className="currency">{t.balance}</td>
                 </tr>
             )
         })

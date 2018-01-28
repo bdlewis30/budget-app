@@ -1,3 +1,3 @@
 DELETE from Transactions
 WHERE id = $1
-AND acct_id = $2;
+AND user_id = $2;

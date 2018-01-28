@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { getUserInfo } from '../../reducer/users';
-import './AddAccount.css';
+import { getUserInfo } from '../reducer/users';
+import _ from 'lodash';
 
 class Transaction extends Component {
 
@@ -11,125 +11,75 @@ class Transaction extends Component {
 
         this.state = {
             transactions: [],
-            disabled: 'disabled',
-            showLedger: false,
-            start_bal: 0,
-            date: 0,
-            acct_name: '',
-            debit: 0,
-            credit: 0,
-            balance: 0
+            t_date: 0,
+            acctName: '',
+            debits: 0,
+            credits: 0,
         }
-    
     }
 
     componentDidMount() {
         this.props.getUserInfo()
     }
 
-    // postCreditAcct(e) {
-    //     e.preventDefault();
-    //     axios.post('/accounts/credit', this.state).then(res => {
-    //         console.log(res)
-    //         let creditAccount = res.data
-
-    //     }).catch(console.log)
-    // }
-
-
-    handleDateChange = (value) => {
-        this.setState({
-            date: value
-        })
-        console.log(this.state.date)
-    }
-
-    handleAccountName = (value) => {
-        this.setState({
-            acct_name: value
-        })
-        console.log(this.state.acctName)
-    }
-
-    handleStartBal = (value) => {
-        this.setState({
-            start_bal: value
-        })
-        console.log(this.state.startBal)
-    }
-
-    handleDebit = (value) => {
-        this.setState({
-            debit: value
-        })
-    }
-
-    handleCredit = (value) => {
-        this.setState({
-            credit: value
-        })
-    }
-
-    handleBalance
-
-    optionDisabled = (value) => {
-        const savings = "Savings";
-        const disabled = 'disabled="disabled"';
-        if (value === savings) {
-            return disabled
-        }
-        else {
-            return null;
-        }
-    }
-
-    saveAccount = (event) => {
+    saveTransaction = (event) => {
         const body = {
-            date: this.state.date,
-            acct_name: this.state.acctName,
-            amount: this.state.startBal,
-            apr_int: this.state.apr,
-            acct_num: this.state.acctNum,
-            memo: this.state.memo,
-            acct_type: this.props.acctType,
-            routing_num: this.state.routingNum,
+            t_date: this.state.date,
+            acctName: this.state.acctName,
+            debits: this.state.debits,
+            credits: this.state.credits,
         };
         event.preventDefault();
-        axios.post('/api/accounts', body).then(res => {
-            console.log({res});
+        axios.post('/accounts/:acctId/transactions', body).then(res => {
+            console.log({ res });
             // this.props.onSave(res.data);
         }, error => {
             console.error(error);
         })
     }
- 
+
+    handleDate = (value) => {
+        this.setState({
+            date: value
+        })
+    }
+
+    handleAcctName = (value) => {
+        this.setState({
+            acctName: value
+        })
+    }
+
+    handleDebit = (value) => {
+        this.setState({
+            debits: value
+        })
+    }
+
+    handleCredit = (value) => {
+        this.setState({
+            credits: value
+        })
+    }
+
     render() {
         const acct_type = this.props.acctType;
-        const {date, acctName, startBal, apr, acctNum, memo} = this.state.creditAccount;
+        const { t_date, acctName, amount, debits, credits } = this.state.transactions;
         return (
             <div className="accts-container">
-                <h2>Add Account:</h2>
+                <h2>Add Transactoion:</h2>
                 <form>
                     <label>Date:</label><br />
-                    <input required type="date" name="Date" onChange={(e) => this.handleDateChange(e.target.value)} /><br />
+                    <input required type="date" name="Date" onChange={(e) => this.handleDate(e.target.value)} /><br />
                     <label>Account Name:</label><br />
-                    <input required type="text" name="Account_Name" placeholder="Account Name" onChange={(e) => this.handleAccountName(e.target.value)} /><br />
-                    <label>Starting Balance:</label><br />
-                    $<input required type="number" pattern="^[0-9]+$" min="0" name="Starting_Balance" placeholder="0.00" onChange={(e) => this.handleStartBal(e.target.value)} /><br />
-                    <label>APR:</label><br />
-                    <input type="number" pattern="^[0-9]+$" step="any" min="0" name="APR" placeholder="0.00%" onChange={(e) => this.handleApr(e.target.value)} /><br />
-                    <label>Account Number (last 4 digits):</label><br />
-                    <input required type="number" pattern="^[0-9]+$" name="Account_Number" placeholder="Account Number" onChange={(e) => this.handleAcctNum(e.target.value)} /><br />
-                    {(acct_type === 'checkings' || acct_type === 'savings') && (
-                        <div>
-                            <label>Routing Number:</label><br />
-                            <input required type="number" pattern="^[0-9]+$" name="Routing_Number" placeholder="Routing Number" onChange={(e) => this.handleRoutingNum(e.target.value)} /><br />
-                        </div>
-                    )}
-                    <label>Memo:</label><br />
-                    <input type="text" name="Memo" placeholder="Memo" onChange={(e) => this.handleMemo(e.target.value)} /><br />
-                    <button className="submit-btn" onClick={this.saveAccount}>Submit</button>
+                    <input required type="text" pattern="^[a-zA-Z]+$" name="Account_Name" onChange={(e) => this.handleAcctName(e.target.value)} /><br />
+                    <label>Debit:</label><br />
+                    $<input type="number" pattern="^[0-9]+$" step="any" min="0" name="Debit" placeholder="0.00" onChange={(e) => this.handleDebit(e.target.value)} /><br />
+                    <label>Credit:</label><br />
+                    $<input required type="number" pattern="^[0-9]+$" name="Credit" placeholder="0.00" onChange={(e) => this.handleCredit(e.target.value)} /><br />
+                    <button className="submit-btn" onClick={this.saveTransaction}>Submit</button>
                 </form>
+
             </div>
         )
     }

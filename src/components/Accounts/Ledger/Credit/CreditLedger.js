@@ -4,6 +4,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { getUserInfo } from '../../../../reducer/users';
 import AddAccount from '../../AddAccount';
+import Transaction from '../../../Transaction';
 import DebitsCredits from '../../../DebitsCredits';
 import _ from 'lodash';
 
@@ -15,7 +16,9 @@ class CreditLedger extends Component {
         this.state = {
             disabled: 'disabled',
             showAddAccount: false,
+            showAddTransaction: false,
             credit: [],
+            transactions: [],
             selectedAccount: 0
         }
     }
@@ -30,11 +33,22 @@ class CreditLedger extends Component {
         })
     }
 
+    componentDidMount() {
+        let promise = axios.get('/api/transactions?acct_type=credit')
+        promise.then(res => {
+            console.log(res)
+            this.setState({
+                transactions: res.data
+            })
+        })
+    }
+
     chooseAccount = (event) => {
         const id = event.target.value;
         console.log(id);
         this.setState({ selectedAccount: id });
         // get transactions with selectedAccount 
+
     }
 
     render() {
@@ -56,14 +70,20 @@ class CreditLedger extends Component {
                             this.setState({
                                 showAddAccount: true
                             })
-                        }}
-                        >Add Account</button>
-                        <button className="btn">Add Transaction</button>
+                        }}>Add Account
+                        </button>
+                        <button className="btn" onClick={() => {
+                            this.setState({
+                                showAddTransaction: true
+                            })
+                        }}>Add Transaction
+                        </button>
                         <button className="btn">Update Transaction</button>
                     </div>
                 </section>
                 <br /><br />
                 {this.state.showAddAccount ? <AddAccount acctType="credit"/> : null}
+                {this.state.showAddTransaction ? <Transaction acctType="credit"/> : null}
                 <div>
                     <DebitsCredits acctId={this.state.selectedAccount} />
                 </div>

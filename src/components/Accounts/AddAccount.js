@@ -16,7 +16,7 @@ class AddAccount extends Component {
             date: 0,
             acctName: '',
             startBal: 0,
-            apr: 0,
+            apr_int: 0,
             acctNum: 0,
             routingNum: 0,
             memo: ''
@@ -59,11 +59,11 @@ class AddAccount extends Component {
         console.log(this.state.startBal)
     }
 
-    handleApr = (value) => {
+    handleAprInt = (value) => {
         this.setState({
-            apr: value
+            apr_int: value
         })
-        console.log(this.state.apr)
+        console.log(this.state.apr_int)
     }
 
     handleAcctNum = (value) => {
@@ -101,10 +101,10 @@ class AddAccount extends Component {
     saveAccount = (event) => {
         const body = {
             date: this.state.date,
-            acct_name: this.state.acctName,
+            acctName: this.state.acctName,
             amount: this.state.startBal,
-            apr_int: this.state.apr,
-            acct_num: this.state.acctNum,
+            apr_int: this.state.apr_int,
+            acctNum: this.state.acctNum,
             memo: this.state.memo,
             acct_type: this.props.acctType,
             routing_num: this.state.routingNum,
@@ -120,7 +120,7 @@ class AddAccount extends Component {
  
     render() {
         const acct_type = this.props.acctType;
-        const {date, acctName, startBal, apr, acctNum, memo} = this.state.creditAccount;
+        const {date, acctName, startBal, apr_int, acctNum, memo} = this.state.creditAccount;
         return (
             <div className="accts-container">
                 <h2>Add Account:</h2>
@@ -132,7 +132,7 @@ class AddAccount extends Component {
                     <label>Starting Balance:</label><br />
                     $<input required type="number" pattern="^[0-9]+$" min="0" name="Starting_Balance" placeholder="0.00" onChange={(e) => this.handleStartBal(e.target.value)} /><br />
                     <label>APR/Interest:</label><br />
-                    <input type="number" pattern="^[0-9]+$" step="any" min="0" name="APR" placeholder="0.00%" onChange={(e) => this.handleApr(e.target.value)} /><br />
+                    <input type="number" pattern="^[0-9]+$" step="any" min="0" name="APR_Int" placeholder="0.00%" onChange={(e) => this.handleAprInt(e.target.value)} /><br />
                     <label>Account Number (last 4 digits):</label><br />
                     <input required type="number" pattern="^[0-9]+$" name="Account_Number" placeholder="Account Number" onChange={(e) => this.handleAcctNum(e.target.value)} /><br />
                     {(acct_type === 'checkings' || acct_type === 'savings') && (

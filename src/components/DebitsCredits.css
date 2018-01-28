@@ -7,3 +7,7 @@
     margin: 5px 0px 5px 0px;
     box-shadow: 0px 1px 2px 0px gray;
 }
+
+.currency {
+    text-align: right;
+}
