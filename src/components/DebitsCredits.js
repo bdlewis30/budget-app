@@ -11,13 +11,14 @@ export default class DebitsCredits extends Component {
 
         this.state = {
             transactions: [],
-            date: [],
+            t_date: [],
             account: [],
             debit: [],
             credit: [],
             balance: []
         }
         this.getTransactions(props.acctId);
+        this.getBalance(props.acctId);
     }
 
     componentWillReceiveProps(newProps, oldProps) {
@@ -27,27 +28,53 @@ export default class DebitsCredits extends Component {
     }
 
     getTransactions = (acctId) => {
-        if(acctId === 0 ){
+        if (acctId === 0) {
             return
         }
         axios.get(`/api/accounts/${acctId}/transactions`).then((res) => {
-            this.setState({ transactions: res.data});
+            this.setState({ transactions: res.data });
         })
+    }
+
+    getBalance = (acctId) => {
+        if (acctId === 0) {
+            return
+        }
+        axios.get(`/api/accounts/${acctId}`).then((res) => {
+            this.setState({ start_bal: res.data });
+        })
+    }
+
+    toNumber(num) {
+        return Number(num.replace(/\$|\,/, ''))
+    }
+
+    toFinance(num) {
+        return (
+            '$' + parseFloat(num)
+                .toFixed(2)
+                .toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+        );
     }
 
     // pass in the account id
     render() {
+        let total = 0
         const rows = _.map(this.state.transactions, (t, index) => {
+            let currentBalance = this.toFinance(this.toNumber(t.start_bal) + total)
+            total += this.toNumber(t.credits) - this.toNumber(t.debits)
             return (
                 <tr key={index}>
-                    <td>{t.date}</td>
+                    <td>{t.t_date}</td>
                     <td>{t.acct_name}</td>
                     <td className="currency">{t.debits}</td>
                     <td className="currency">{t.credits}</td>
-                    <td className="currency">{t.balance}</td>
+                    <td className="currency" type="number" pattern="(^\d*\.?\d*[0-9]+\d*$)|(^[0-9]+\d*\.\d*$)">{currentBalance}</td>
                 </tr>
             )
         })
+
         return (
             <div>
                 <table>

@@ -12,7 +12,6 @@ class Transaction extends Component {
         this.state = {
             transactions: [],
             t_date: 0,
-            acctName: '',
             debits: 0,
             credits: 0,
         }
@@ -24,13 +23,13 @@ class Transaction extends Component {
 
     saveTransaction = (event) => {
         const body = {
-            t_date: this.state.date,
-            acctName: this.state.acctName,
+            t_date: this.state.t_date,
             debits: this.state.debits,
             credits: this.state.credits,
         };
         event.preventDefault();
-        axios.post('/accounts/:acctId/transactions', body).then(res => {
+        axios.post(`/api/accounts/${this.props.acctId}/transactions`, body)
+        .then(res => {
             console.log({ res });
             // this.props.onSave(res.data);
         }, error => {
@@ -41,12 +40,6 @@ class Transaction extends Component {
     handleDate = (value) => {
         this.setState({
             date: value
-        })
-    }
-
-    handleAcctName = (value) => {
-        this.setState({
-            acctName: value
         })
     }
 
@@ -64,22 +57,19 @@ class Transaction extends Component {
 
     render() {
         const acct_type = this.props.acctType;
-        const { t_date, acctName, amount, debits, credits } = this.state.transactions;
+        const { t_date, acctName, debits, credits } = this.state.transactions;
         return (
             <div className="accts-container">
                 <h2>Add Transactoion:</h2>
                 <form>
                     <label>Date:</label><br />
-                    <input required type="date" name="Date" onChange={(e) => this.handleDate(e.target.value)} /><br />
-                    <label>Account Name:</label><br />
-                    <input required type="text" pattern="^[a-zA-Z]+$" name="Account_Name" onChange={(e) => this.handleAcctName(e.target.value)} /><br />
+                    <input type="date" name="Date" onChange={(e) => this.handleDate(e.target.value)} /><br />
                     <label>Debit:</label><br />
-                    $<input type="number" pattern="^[0-9]+$" step="any" min="0" name="Debit" placeholder="0.00" onChange={(e) => this.handleDebit(e.target.value)} /><br />
+                    $<input type="number" pattern="(^\d*\.?\d*[0-9]+\d*$)|(^[0-9]+\d*\.\d*$)" step="any" min="0" name="Debit" placeholder="0.00" onChange={(e) => this.handleDebit(e.target.value)} /><br />
                     <label>Credit:</label><br />
-                    $<input required type="number" pattern="^[0-9]+$" name="Credit" placeholder="0.00" onChange={(e) => this.handleCredit(e.target.value)} /><br />
+                    $<input type="number" pattern="(^\d*\.?\d*[0-9]+\d*$)|(^[0-9]+\d*\.\d*$)" name="Credit" placeholder="0.00" onChange={(e) => this.handleCredit(e.target.value)} /><br />
                     <button className="submit-btn" onClick={this.saveTransaction}>Submit</button>
                 </form>
-
             </div>
         )
     }

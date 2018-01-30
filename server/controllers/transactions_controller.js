@@ -16,11 +16,12 @@ const controller = {
         const db = req.app.get('db')
         const user_id = req.headers['x-user-id'];
         const {acct_type, t_date, acct_name, debits, credits } = req.body
+        const {acctId} = req.params
 
-        db.transactions.create_transaction([acct_type, t_date, acct_name, debits, credits, user_id])
+        db.transactions.create_transaction([acct_type, t_date, acct_name, debits, credits, acctId])
         .then((rows) => {
-            res.status(200).send(rows[0])
-        }).catch(error => handleErrors(error,res))
+            res.status(200).send(rows)
+        })//.catch(error => handleErrors(error,res))
     },
 
     getOne: (req, res) => {
@@ -28,7 +29,7 @@ const controller = {
         const user_id = req.headers['x-user-id'];
         const id = parseInt(req.params.id);
         
-        db.transactions.read_one_transaction([id, user_id])
+        db.transactions.read_one_transaction([id, acct_id, user_id])
         .then((rows) => {
             res.status(200).send(rows[0])
         }).catch(error => handleErrors(error,res))

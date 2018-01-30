@@ -33,22 +33,12 @@ class CreditLedger extends Component {
         })
     }
 
-    componentDidMount() {
-        let promise = axios.get('/api/transactions?acct_type=credit')
-        promise.then(res => {
-            console.log(res)
-            this.setState({
-                transactions: res.data
-            })
-        })
-    }
-
     chooseAccount = (event) => {
         const id = event.target.value;
         console.log(id);
         this.setState({ selectedAccount: id });
         // get transactions with selectedAccount 
-
+        
     }
 
     render() {
@@ -59,7 +49,7 @@ class CreditLedger extends Component {
             <div className="credit-ledger-container">
                 <h2>Credit Balance</h2>
                 <section className="credit-ledger-header">
-                    <select className="acct-dropdown" value={this.state.selectedAccount} onChange={this.chooseAccount}>
+                    <select className="acct-dropdown" onChange={this.chooseAccount} value={this.state.selectedAccount}>
                         <option value="0">--Select An Account--</option>
                         {options}
                     </select>
@@ -83,7 +73,7 @@ class CreditLedger extends Component {
                 </section>
                 <br /><br />
                 {this.state.showAddAccount ? <AddAccount acctType="credit"/> : null}
-                {this.state.showAddTransaction ? <Transaction acctType="credit"/> : null}
+                {this.state.showAddTransaction ? <Transaction acctType="credit" acctId={this.state.selectedAccount}/> : null}
                 <div>
                     <DebitsCredits acctId={this.state.selectedAccount} />
                 </div>

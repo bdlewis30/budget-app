@@ -15,7 +15,7 @@ class AddAccount extends Component {
             showLedger: false,
             date: 0,
             acctName: '',
-            startBal: 0,
+            startal: 0,
             apr_int: 0,
             acctNum: 0,
             routingNum: 0,
@@ -28,14 +28,14 @@ class AddAccount extends Component {
         this.props.getUserInfo()
     }
 
-    // postCreditAcct(e) {
-    //     e.preventDefault();
-    //     axios.post('/accounts/credit', this.state).then(res => {
-    //         console.log(res)
-    //         let creditAccount = res.data
+    postCreditAcct(e) {
+        e.preventDefault();
+        axios.post('/accounts/credit', this.state).then(res => {
+            console.log(res)
+            let creditAccount = res.data
 
-    //     }).catch(console.log)
-    // }
+        }).catch(console.log)
+    }
 
 
     handleDateChange = (value) => {
@@ -54,9 +54,9 @@ class AddAccount extends Component {
 
     handleStartBal = (value) => {
         this.setState({
-            startBal: value
+            start_bal: value
         })
-        console.log(this.state.startBal)
+        console.log(this.state.start_bal)
     }
 
     handleAprInt = (value) => {
@@ -102,7 +102,7 @@ class AddAccount extends Component {
         const body = {
             date: this.state.date,
             acctName: this.state.acctName,
-            amount: this.state.startBal,
+            start_bal: this.state.start_bal,
             apr_int: this.state.apr_int,
             acctNum: this.state.acctNum,
             memo: this.state.memo,
@@ -120,7 +120,7 @@ class AddAccount extends Component {
  
     render() {
         const acct_type = this.props.acctType;
-        const {date, acctName, startBal, apr_int, acctNum, memo} = this.state.creditAccount;
+        const {date, acctName, start_bal, apr_int, acctNum, memo} = this.state.creditAccount;
         return (
             <div className="accts-container">
                 <h2>Add Account:</h2>
@@ -130,15 +130,15 @@ class AddAccount extends Component {
                     <label>Account Name:</label><br />
                     <input required type="text" name="Account_Name" placeholder="Account Name" onChange={(e) => this.handleAccountName(e.target.value)} /><br />
                     <label>Starting Balance:</label><br />
-                    $<input required type="number" pattern="^[0-9]+$" min="0" name="Starting_Balance" placeholder="0.00" onChange={(e) => this.handleStartBal(e.target.value)} /><br />
+                    $<input required type="number" pattern="^[0-9_]+$" min="0" name="Starting_Balance" placeholder="0.00" onChange={(e) => this.handleStartBal(e.target.value)} /><br />
                     <label>APR/Interest:</label><br />
-                    <input type="number" pattern="^[0-9]+$" step="any" min="0" name="APR_Int" placeholder="0.00%" onChange={(e) => this.handleAprInt(e.target.value)} /><br />
+                    <input type="number" pattern="^[0-9_]+$" step="any" min="0" name="APR_Int" placeholder="0.00%" onChange={(e) => this.handleAprInt(e.target.value)} /><br />
                     <label>Account Number (last 4 digits):</label><br />
-                    <input required type="number" pattern="^[0-9]+$" name="Account_Number" placeholder="Account Number" onChange={(e) => this.handleAcctNum(e.target.value)} /><br />
+                    <input required type="number" pattern="^[0-9_]+$" name="Account_Number" placeholder="Account Number" onChange={(e) => this.handleAcctNum(e.target.value)} /><br />
                     {(acct_type === 'checkings' || acct_type === 'savings') && (
                         <div>
                             <label>Routing Number:</label><br />
-                            <input required type="number" pattern="^[0-9]+$" name="Routing_Number" placeholder="Routing Number" onChange={(e) => this.handleRoutingNum(e.target.value)} /><br />
+                            <input required type="number" pattern="^[0-9_]+$" name="Routing_Number" placeholder="Routing Number" onChange={(e) => this.handleRoutingNum(e.target.value)} /><br />
                         </div>
                     )}
                     <label>Memo:</label><br />
