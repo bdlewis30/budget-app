@@ -17,7 +17,7 @@ const controller = {
         const user_id = req.headers['x-user-id'];
         const {acct_type, t_date, acct_name, debits, credits } = req.body
         const {acctId} = req.params
-
+        console.log(t_date)
         db.transactions.create_transaction([acct_type, t_date, acct_name, debits, credits, acctId])
         .then((rows) => {
             res.status(200).send(rows)

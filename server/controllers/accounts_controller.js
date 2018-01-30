@@ -1,10 +1,10 @@
-const handleErrors = (error, response) => {
+const handleErrors = (error, res) => {
     res.status(500).send(error);
 }
 
 const controller = {
     getAll: (req, res) => {
-        const db = req.app.get('db')
+        const db = req.app.get('db');
         const user_id = req.headers['x-user-id'];
         let promise;
 
@@ -21,9 +21,9 @@ const controller = {
     create: (req, res) => {
         const db = req.app.get('db')
         const user_id = req.headers['x-user-id'];
-        const {acct_type, acct_name, amount, apr_int, acct_num, routing_num, memo} = req.body
+        const {acct_type, acct_name, start_bal, apr_int, acct_num, routing_num, memo} = req.body
 
-        db.accounts.create_account([acct_type, acct_name, amount, apr_int, acct_num, routing_num, memo, user_id])
+        db.accounts.create_account([acct_type, acct_name, start_bal, apr_int, acct_num, routing_num, memo, user_id])
         .then((rows) => {
             res.status(200).send(rows[0])
         }).catch(error => handleErrors(error,res))
@@ -44,9 +44,9 @@ const controller = {
         const db = req.app.get('db')
         const user_id = req.headers['x-user-id'];
         const id = parseInt(req.params.id);
-        const {acct_type, acct_name, amount, apr_int, acct_num, routing_num, memo} = req.body
+        const {acct_type, acct_name, start_bal, apr_int, acct_num, routing_num, memo} = req.body
 
-        db.accounts.update_account([acct_type, acct_name, amount, apr_int, acct_num, routing_num, memo, id, user_id])
+        db.accounts.update_account([acct_type, acct_name, start_bal, apr_int, acct_num, routing_num, memo, id, user_id])
         .then((rows) => {
             res.status(200).send(rows[0])
         }).catch(error => handleErrors(error,res))

@@ -1,4 +1,4 @@
-.credit-ledger-container {
+.ledger-container {
     height: 100%;
     width: 100%;
     background-color: white;
@@ -8,7 +8,7 @@
     box-shadow: 0px 1px 2px 0px gray;
 }
 
-.credit-ledger-header {
+.ledger-header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -18,7 +18,7 @@
 
 .acct-dropdown {
     height: 30px;
-    width: 160px;
+    width: 175px;
     font-size: 14px;
 }
 

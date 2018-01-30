@@ -46,7 +46,7 @@ export default class DebitsCredits extends Component {
     }
 
     toNumber(num) {
-        return Number(num.replace(/\$|\,/, ''))
+        return Number(num.replace(/\$|,/, ''))
     }
 
     toFinance(num) {

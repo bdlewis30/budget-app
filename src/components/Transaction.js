@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { getUserInfo } from '../reducer/users';
-import _ from 'lodash';
 
-class Transaction extends Component {
+export class Transaction extends Component {
 
     constructor() {
         super();
@@ -23,6 +22,8 @@ class Transaction extends Component {
 
     saveTransaction = (event) => {
         const body = {
+            acct_name: this.props.acct_name,
+            acct_type: this.props.acct_type,
             t_date: this.state.t_date,
             debits: this.state.debits,
             credits: this.state.credits,
@@ -39,7 +40,7 @@ class Transaction extends Component {
 
     handleDate = (value) => {
         this.setState({
-            date: value
+            t_date: value
         })
     }
 
