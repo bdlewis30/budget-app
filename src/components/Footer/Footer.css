@@ -8,6 +8,8 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    position: absolute;
+    bottom: 0;
 }
 .copyright {
     width: 200px;

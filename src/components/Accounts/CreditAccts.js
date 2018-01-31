@@ -27,7 +27,6 @@ export class CreditAccts extends Component {
     componentDidMount() {
         let promise = axios.get('/api/accounts?acct_type=credit')
         promise.then(res => {
-            console.log(res)
             this.setState({
                 credit: res.data
             })
@@ -36,7 +35,6 @@ export class CreditAccts extends Component {
 
     chooseAccount = (event) => {
         const id = event.target.value;
-        console.log(id);
         let creditName = this.state.credit.find(credit => {return credit.id == id})
         this.setState({ selectedAccount: id, acct_name: creditName.acct_name});
         // get transactions with selectedAccount 

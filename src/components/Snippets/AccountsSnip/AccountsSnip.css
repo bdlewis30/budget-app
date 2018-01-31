@@ -32,9 +32,9 @@ a:link {
     height: 115px;
     width: 115px;
     color: white;
-    font-size: 12px;
+    font-size: 100%;
     text-align: center;
-    padding-top: 10px;
+    padding-top: 20px;
     margin: 10px;
     cursor: pointer;
 }
@@ -63,7 +63,6 @@ a:link {
         width: 100%;
     }
     .box-1,.box-2,.box-3,.box-4 {
-        font-size: 4.5vw;
         width: 140px;
     }
 }
@@ -74,7 +73,6 @@ a:link {
         width: 100%;
     }
     .box-1,.box-2,.box-3,.box-4 {
-        font-size: 4.5vw;
         width: 120px;
     }
 }
@@ -90,7 +88,6 @@ a:link {
     }
 
     .box-1,.box-2,.box-3,.box-4 {
-        font-size: 18px;
         height: 80px;
         width: 200px;
     }

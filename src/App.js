@@ -11,10 +11,10 @@ import Balance from './components/Balance/Balance';
 import Bills from './components/Bills/Bills';
 import Budget from './components/Budget/Budget';
 import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
+// import Footer from './components/Footer/Footer';
 
 class App extends Component {
-  
+
 
   render() {
     return (
@@ -32,7 +32,7 @@ class App extends Component {
           <Route path="/bills" component={Bills} />
           <Route path="/budget" component={Budget} />
         </Switch>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     );
   }
