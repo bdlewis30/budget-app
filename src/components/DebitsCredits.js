@@ -15,7 +15,8 @@ export default class DebitsCredits extends Component {
             account: [],
             debit: [],
             credit: [],
-            balance: []
+            balance: [],
+            // start_bal: 0
         }
         this.getTransactions(props.acctId);
         this.getBalance(props.acctId);
@@ -79,13 +80,16 @@ export default class DebitsCredits extends Component {
             <div>
                 <table>
                     <tbody>
-                        <tr className="column-header">
+                        <tr>
                             <th>Date</th>
-                            <th>Acct</th>
-                            <th>DR</th>
-                            <th>CR</th>
-                            <th>Bal.</th>
+                            <th>Account</th>
+                            <th>Debits</th>
+                            <th>Credits</th>
+                            <th>Balance</th>
                         </tr>
+                        {/* <tr>
+                            <td>{this.getBalance}</td>
+                        </tr> */}
                         {rows}
                     </tbody>
                 </table>

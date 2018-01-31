@@ -11,3 +11,14 @@
 .currency {
     text-align: right;
 }
+
+th {
+    background-color: #3E9D4A;
+    color: white;
+}
+
+@media(max-width: 375px){
+    th, tr {
+        font-size: 10px;
+    }
+}

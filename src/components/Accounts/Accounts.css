@@ -45,12 +45,6 @@
     padding: 8px;
 }
 
-.column-header {
-    text-decoration: underline;
-    font-size: 1.2em;
-    color: #4A90E2;
-}
-
 .currency {
     text-align: right;
 }
@@ -59,6 +53,7 @@
     .buttons-container {
         width: 100%;
     }
+    
 }
 
 @media(min-width: 768px) {
