@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { getUserInfo } from '../../reducer/users';
+import { getUserInfo, chooseAccount, getAccounts } from '../../reducer/users';
 import './AddAccount.css';
 
 export class AddAccount extends Component {
@@ -81,7 +81,8 @@ export class AddAccount extends Component {
         };
         axios.post('/api/accounts', body).then(res => {
             console.log({res});
-            // this.props.onSave(res.data);
+            this.props.getAccounts(this.props.acct_type)
+            this.props.chooseAccount(res.data)
         }, error => {
             console.error(error);
         })
@@ -98,7 +99,7 @@ export class AddAccount extends Component {
                     <label>Account Name:</label><br />
                     <input required type="text" name="Account_Name" placeholder="Account Name" onChange={(e) => this.handleAccountName(e.target.value)} /><br />
                     <label>Starting Balance:</label><br />
-                    $<input required type="number" pattern="^[-+]?\d+(\.\d+)?$" min="0" name="Starting_Balance" placeholder="0.00" onChange={(e) => this.handleStartBal(e.target.value)} /><br />
+                    $<input required type="number" pattern="^[+-]?[0-9]{1,3}(?:,?[0-9]{3})*(?:\.[0-9]{2})?$" min="0" name="Starting_Balance" placeholder="0.00" onChange={(e) => this.handleStartBal(e.target.value)} /><br />
                     <label>APR/Interest:</label><br />
                     <input type="number" pattern="^[-+]?\d+(\.\d+)?$" step="any" min="0" name="APR_Int" placeholder="0.00%" onChange={(e) => this.handleAprInt(e.target.value)} /><br />
                     <label>Account Number (last 4 digits):</label><br />
@@ -125,4 +126,4 @@ function mapStatetoProps(state) {
     }
 }
 
-export default connect(mapStatetoProps, { getUserInfo })(AddAccount);
+export default connect(mapStatetoProps, { getUserInfo, chooseAccount, getAccounts })(AddAccount);

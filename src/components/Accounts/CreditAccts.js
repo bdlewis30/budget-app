@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Accounts.css';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { getUserInfo } from '../../reducer/users';
+import { getUserInfo, getAccounts, chooseAccount } from '../../reducer/users';
 import AddAccount from './AddAccount';
 import Transaction from '../Transaction';
 import DebitsCredits from '../DebitsCredits';
@@ -18,45 +18,44 @@ export class CreditAccts extends Component {
             showAddAccount: false,
             showAddTransaction: false,
             credit: [],
-            transactions: [],
-            selectedAccount: 0,
+            // transactions: [],
+            // selectedAccount: 0,
             acct_name: ''
         }
     }
 
     componentDidMount() {
-        let promise = axios.get('/api/accounts?acct_type=credit')
-        promise.then(res => {
-            this.setState({
-                credit: res.data
-            })
-        })
+       this.props.getAccounts('credit')
     }
 
-    chooseAccount = (event) => {
+
+    handleSelect = (event) => {
         const id = event.target.value;
-        let creditName = this.state.credit.find(credit => {return credit.id == id})
-        this.setState({ selectedAccount: id, acct_name: creditName.acct_name});
+        let creditName = this.props.creditAccts.find(credit => { return credit.id == id })
+        console.log(creditName)
+        this.props.chooseAccount(creditName)
+        // this.setState({ selectedAccount: id, acct_name: creditName.acct_name });
         // get transactions with selectedAccount 
-        
+
     }
 
     closeAddAccount = () => {
         alert('Success! A new account has been submitted.')
+
         this.setState({
             showAddAccount: false
         })
     }
 
     render() {
-        const options = _.map(this.state.credit, (credit, index) => {
+        const options = _.map(this.props.creditAccts, (credit, index) => {
             return <option key={credit.id} value={credit.id}>{credit.acct_name}</option>
         })
         return (
             <div className="ledger-container">
                 <h2>Credit Balance</h2>
                 <section className="ledger-header">
-                    <select className="acct-dropdown" onChange={this.chooseAccount} value={this.state.selectedAccount}>
+                    <select className="acct-dropdown" onChange={this.handleSelect} value={this.props.selectedAccount}>
                         <option value="0">--Select An Account--</option>
                         {options}
                     </select>
@@ -79,10 +78,10 @@ export class CreditAccts extends Component {
                     </div>
                 </section>
                 <br /><br />
-                {this.state.showAddAccount ? <AddAccount acct_type="credit" action={this.closeAddAccount}/> : null}
-                {this.state.showAddTransaction ? <Transaction acct_type="credit" acctId={this.state.selectedAccount} acct_name={this.state.acct_name} /> : null}
+                {this.state.showAddAccount ? <AddAccount acct_type="credit" action={this.closeAddAccount} /> : null}
+                {this.state.showAddTransaction ? <Transaction acct_type="credit" acctId={this.props.selectedAccount} acct_name={this.state.acct_name} /> : null}
                 <div>
-                    <DebitsCredits acctId={this.state.selectedAccount} />
+                    <DebitsCredits acctId={this.props.selectedAccount} />
                 </div>
             </div >
         )
@@ -93,8 +92,10 @@ export class CreditAccts extends Component {
 function mapStatetoProps(state) {
     console.log(state)
     return {
-        user: state.user
+        user: state.user,
+        creditAccts: state.creditAccts,
+        selectedAccount: state.selectedAccount
     }
 }
 
-export default connect(mapStatetoProps, { getUserInfo })(CreditAccts);
+export default connect(mapStatetoProps, { getUserInfo, getAccounts, chooseAccount })(CreditAccts);
