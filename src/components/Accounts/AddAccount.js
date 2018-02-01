@@ -30,42 +30,36 @@ export class AddAccount extends Component {
         this.setState({
             acct_name: value
         })
-        console.log(this.state.acct_name)
     }
 
     handleStartBal = (value) => {
         this.setState({
             start_bal: value
         })
-        console.log(this.state.start_bal)
     }
 
     handleAprInt = (value) => {
         this.setState({
             apr_int: value
         })
-        console.log(this.state.apr_int)
     }
 
     handleAcctNum = (value) => {
         this.setState({
             acct_num: value
         })
-        console.log(this.state.acct_num)
     }
 
     handleRoutingNum = (value) => {
         this.setState({
             routing_num: value
         })
-        console.log(this.state.routing_num)
     }
 
     handleMemo = (value) => {
         this.setState({
             memo: value
         })
-        console.log(this.state.memo)
     }
 
     saveAccount = () => {
@@ -80,7 +74,7 @@ export class AddAccount extends Component {
             memo: this.state.memo
         };
         axios.post('/api/accounts', body).then(res => {
-            console.log({res});
+            // console.log({res});
             this.props.getAccounts(this.props.acct_type)
             this.props.chooseAccount(res.data)
         }, error => {
@@ -97,13 +91,13 @@ export class AddAccount extends Component {
                 <h2>Add Account:</h2>
                 <form onSubmit={(e) => {e.preventDefault(); this.saveAccount(); this.props.action()}}>
                     <label>Account Name:</label><br />
-                    <input required type="text" name="Account_Name" placeholder="Account Name" onChange={(e) => this.handleAccountName(e.target.value)} /><br />
+                    <input className="add-inputs" required type="text" name="Account_Name" placeholder="Account Name" onChange={(e) => this.handleAccountName(e.target.value)} /><br />
                     <label>Starting Balance:</label><br />
-                    $<input required type="number" pattern="^[+-]?[0-9]{1,3}(?:,?[0-9]{3})*(?:\.[0-9]{2})?$" min="0" name="Starting_Balance" placeholder="0.00" onChange={(e) => this.handleStartBal(e.target.value)} /><br />
+                    $<input className="add-inputs" required type="number" pattern="^[+-]?[0-9]{1,3}(?:,?[0-9]{3})*(?:\.[0-9]{2})?$" min="0" name="Starting_Balance" placeholder="0.00" onChange={(e) => this.handleStartBal(e.target.value)} /><br />
                     <label>APR/Interest:</label><br />
-                    <input type="number" pattern="^[-+]?\d+(\.\d+)?$" step="any" min="0" name="APR_Int" placeholder="0.00%" onChange={(e) => this.handleAprInt(e.target.value)} /><br />
+                    <input className="add-inputs" type="number" pattern="^[-+]?\d+(\.\d+)?$" step="any" min="0" name="APR_Int" placeholder="0.00%" onChange={(e) => this.handleAprInt(e.target.value)} /><br />
                     <label>Account Number (last 4 digits):</label><br />
-                    <input required type="number" pattern="^[0-9_]+$" name="Account_Number" placeholder="Account Number" onChange={(e) => this.handleAcctNum(e.target.value)} /><br />
+                    <input className="add-inputs" required type="number" pattern="^[0-9_]+$" name="Account_Number" placeholder="Account Number" onChange={(e) => this.handleAcctNum(e.target.value)} /><br />
                     {(acct_type === 'checking' || acct_type === 'savings') && (
                         <div>
                             <label>Routing Number(123456789):</label><br />
@@ -111,7 +105,7 @@ export class AddAccount extends Component {
                         </div>
                     )}
                     <label>Memo:</label><br />
-                    <input type="text" name="Memo" placeholder="Memo" onChange={(e) => this.handleMemo(e.target.value)} /><br />
+                    <input className="add-inputs" type="text" name="Memo" placeholder="Memo" onChange={(e) => this.handleMemo(e.target.value)} /><br />
                     <button type='submit' className="submit-btn" >Submit</button>
                 </form>
             </div>

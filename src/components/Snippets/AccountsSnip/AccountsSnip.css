@@ -37,6 +37,7 @@ a:link {
     padding-top: 20px;
     margin: 10px;
     cursor: pointer;
+    border: solid lightgray 2px;
 }
 
 .box-1 {

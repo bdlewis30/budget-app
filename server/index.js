@@ -16,6 +16,7 @@ const {
 
 const app = express();
 app.use(bodyParser.json());
+app.use( express.static( `${__dirname}/../build` ) );
 
 app.use(session({
     secret: process.env.SESSION_SECRET,
@@ -69,8 +70,8 @@ passport.deserializeUser((id, done) => {
 
 app.get('/auth', passport.authenticate('auth0'))
 app.get('/auth/callback', passport.authenticate('auth0', {
-    successRedirect: 'http://localhost:3000/#/dashboard',
-    failureRedirect: 'http://localhost:3000/'
+    successRedirect: '/#/dashboard',
+    failureRedirect: '/'
 }))
 
 app.get('/auth/me', (req, res) => {
@@ -84,11 +85,15 @@ app.get('/auth/me', (req, res) => {
 
 app.get('auth/logout', function (req, res) {
     req.logOut();
-    res.redirect('http://localhost:3000/')
+    res.redirect('/')
 })
 
 let router = require('./routes/api')
 app.use('/api', router)
+
+app.get('*', (req, res)=>{
+    res.sendFile(path.join(__dirname, '../build/index.html'));
+});
 
 const { SERVER_PORT } = process.env
 app.listen(SERVER_PORT, () => {

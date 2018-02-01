@@ -15,7 +15,7 @@ export default class DebitsCredits extends Component {
             account: [],
             debit: [],
             credit: [],
-            balance: [],
+            start_bal: [],
             // start_bal: 0
         }
         this.getTransactions(props.acctId);
@@ -38,9 +38,6 @@ export default class DebitsCredits extends Component {
     }
 
     getBalance = (acctId) => {
-        if (acctId === 0) {
-            return
-        }
         axios.get(`/api/accounts/${acctId}`).then((res) => {
             this.setState({ start_bal: res.data });
         })
@@ -59,7 +56,6 @@ export default class DebitsCredits extends Component {
         );
     }
 
-    // pass in the account id
     render() {
         let total = 0
         const rows = _.map(this.state.transactions, (t, index) => {
@@ -68,7 +64,7 @@ export default class DebitsCredits extends Component {
             return (
                 <tr key={index}>
                     <td>{t.t_date}</td>
-                    <td>{t.acct_name}</td>
+                    <td>{t.t_desc}</td>
                     <td className="currency">{t.debits}</td>
                     <td className="currency">{t.credits}</td>
                     <td className="currency" type="number" pattern="(^\d*\.?\d*[0-9]+\d*$)|(^[0-9]+\d*\.\d*$)">{currentBalance}</td>
@@ -82,15 +78,15 @@ export default class DebitsCredits extends Component {
                     <tbody>
                         <tr>
                             <th>Date</th>
-                            <th>Account</th>
+                            <th>Description</th>
                             <th>Debits</th>
                             <th>Credits</th>
                             <th>Balance</th>
                         </tr>
-                        {/* <tr>
-                            <td>{this.getBalance}</td>
-                        </tr> */}
                         {rows}
+                        <tr>
+                            <td>{this.getBalance}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

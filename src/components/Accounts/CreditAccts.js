@@ -18,8 +18,6 @@ export class CreditAccts extends Component {
             showAddAccount: false,
             showAddTransaction: false,
             credit: [],
-            // transactions: [],
-            // selectedAccount: 0,
             acct_name: ''
         }
     }
@@ -34,9 +32,6 @@ export class CreditAccts extends Component {
         let creditName = this.props.creditAccts.find(credit => { return credit.id == id })
         console.log(creditName)
         this.props.chooseAccount(creditName)
-        // this.setState({ selectedAccount: id, acct_name: creditName.acct_name });
-        // get transactions with selectedAccount 
-
     }
 
     closeAddAccount = () => {
