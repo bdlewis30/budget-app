@@ -93,7 +93,7 @@ export class AddAccount extends Component {
                     <label>Account Name:</label><br />
                     <input className="add-inputs" required type="text" name="Account_Name" placeholder="Account Name" onChange={(e) => this.handleAccountName(e.target.value)} /><br />
                     <label>Starting Balance:</label><br />
-                    $<input className="add-inputs" required type="number" pattern="^[+-]?[0-9]{1,3}(?:,?[0-9]{3})*(?:\.[0-9]{2})?$" min="0" name="Starting_Balance" placeholder="0.00" onChange={(e) => this.handleStartBal(e.target.value)} /><br />
+                    $<input className="add-inputs" required type="number" pattern="^[+-]?[0-9]{1,3}(?:,?[0-9]{3})*(?:\.[0-9]{2})?$" /*pattern="(^\d*\.?\d*[0-9]+\d*$)|(^[0-9]+\d*\.\d*$)"*/ min="0" name="Starting_Balance" placeholder="0.00" onChange={(e) => this.handleStartBal(e.target.value)} /><br />
                     <label>APR/Interest:</label><br />
                     <input className="add-inputs" type="number" pattern="^[-+]?\d+(\.\d+)?$" step="any" min="0" name="APR_Int" placeholder="0.00%" onChange={(e) => this.handleAprInt(e.target.value)} /><br />
                     <label>Account Number (last 4 digits):</label><br />

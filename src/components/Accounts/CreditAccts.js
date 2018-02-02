@@ -14,7 +14,6 @@ export class CreditAccts extends Component {
         super();
 
         this.state = {
-            disabled: 'disabled',
             showAddAccount: false,
             showAddTransaction: false,
             credit: [],
@@ -23,11 +22,11 @@ export class CreditAccts extends Component {
     }
 
     componentDidMount() {
-       this.props.getAccounts('credit')
+        this.props.getAccounts('credit')
     }
 
 
-    handleSelect = (event) => {
+    handleAccountSelect = (event) => {
         const id = event.target.value;
         let creditName = this.props.creditAccts.find(credit => { return credit.id == id })
         console.log(creditName)
@@ -42,6 +41,19 @@ export class CreditAccts extends Component {
         })
     }
 
+    handleSelect = (event) => {
+        if(event === 'Add-Account') {
+            this.setState({
+                showAddAccount: true
+            })
+        }
+        if(event === 'Add-Transaction'){
+            this.setState({
+                showAddTransaction: true
+            })
+        }
+    }
+
     render() {
         const options = _.map(this.props.creditAccts, (credit, index) => {
             return <option key={credit.id} value={credit.id}>{credit.acct_name}</option>
@@ -50,27 +62,23 @@ export class CreditAccts extends Component {
             <div className="ledger-container">
                 <h2>Credit Balance</h2>
                 <section className="ledger-header">
-                    <select className="acct-dropdown" onChange={this.handleSelect} value={this.props.selectedAccount}>
+                    <select className="account-dropdown" onChange={event => this.handleSelect(event.target.value)}>
+                        <option>Accounts/Transactions</option>
+                        <optgroup label="Accounts">
+                            <option value="Add-Account">Add Account</option>
+                            <option>Update Account</option>
+                            <option>Delete Account</option>
+                        </optgroup>
+                        <optgroup label="Transactions">
+                            <option value="Add-Transaction">Add Transaction</option>
+                            <option>Update Transaction</option>
+                            <option>Delete Transaction</option>
+                        </optgroup>
+                    </select>
+                    <select className="account-dropdown" onChange={this.handleAccountSelect} value={this.props.selectedAccount}>
                         <option value="0">--Select An Account--</option>
                         {options}
                     </select>
-                    <br />
-                    <br />
-                    <div className="buttons-container">
-                        <button className="btn" onClick={() => {
-                            this.setState({
-                                showAddAccount: true
-                            })
-                        }}>Add Account
-                        </button>
-                        <button className="btn" onClick={() => {
-                            this.setState({
-                                showAddTransaction: true
-                            })
-                        }}>Add Transaction
-                        </button>
-                        <button className="btn">Update Transaction</button>
-                    </div>
                 </section>
                 <br /><br />
                 {this.state.showAddAccount ? <AddAccount acct_type="credit" action={this.closeAddAccount} /> : null}

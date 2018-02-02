@@ -10,16 +10,10 @@ export default class DebitsCredits extends Component {
         super();
 
         this.state = {
-            transactions: [],
-            t_date: [],
-            account: [],
-            debit: [],
-            credit: [],
-            start_bal: [],
-            // start_bal: 0
+            transactions: []
         }
         this.getTransactions(props.acctId);
-        this.getBalance(props.acctId);
+        // this.getBalance(props.acctId);
     }
 
     componentWillReceiveProps(newProps, oldProps) {
@@ -37,11 +31,18 @@ export default class DebitsCredits extends Component {
         })
     }
 
-    getBalance = (acctId) => {
-        axios.get(`/api/accounts/${acctId}`).then((res) => {
-            this.setState({ start_bal: res.data });
-        })
-    }
+    // handleDateChange = (event) => {
+    //     this.setState({
+    //         t_date: event.target.value
+    //     })
+    //     axios.put(`/api/accounts/${acctId}/transactions/${id}`, {t_date: this.state.t_date});
+    // }
+
+    // getBalance = (acctId) => {
+    //     axios.get(`/api/accounts/${acctId}`).then((res) => {
+    //         this.setState({ start_bal: res.data.start_bal });
+    //     })
+    // }
 
     toNumber(num) {
         return Number(num.replace(/\$|,/, ''))
@@ -57,17 +58,19 @@ export default class DebitsCredits extends Component {
     }
 
     render() {
+        
         let total = 0
         const rows = _.map(this.state.transactions, (t, index) => {
             let currentBalance = this.toFinance(this.toNumber(t.start_bal) + total)
             total += this.toNumber(t.credits) - this.toNumber(t.debits)
+            let date = new Date(t.t_date)
             return (
-                <tr key={index}>
-                    <td>{t.t_date}</td>
-                    <td>{t.t_desc}</td>
-                    <td className="currency">{t.debits}</td>
-                    <td className="currency">{t.credits}</td>
-                    <td className="currency" type="number" pattern="(^\d*\.?\d*[0-9]+\d*$)|(^[0-9]+\d*\.\d*$)">{currentBalance}</td>
+                <tr className="dc-input" key={index}>
+                    <td><input className="dc-input" onChange={this.handleDateChange} onBlur={this.handleDateChange} value={date.getFullYear() + '/' + Number(date.getMonth()) + 1 + '/' + date.getDate()}/></td>
+                    <td><input className="dc-input" value={t.t_desc}/></td>
+                    <td><input className="currency dc-input" value={t.debits}/></td>
+                    <td><input className="currency dc-input" value={t.credits}/></td>
+                    <td><input className="currency dc-input" value={currentBalance}/></td>
                 </tr>
             )
         })
@@ -76,7 +79,7 @@ export default class DebitsCredits extends Component {
             <div>
                 <table>
                     <tbody>
-                        <tr>
+                        <tr className="dc-table-header">
                             <th>Date</th>
                             <th>Description</th>
                             <th>Debits</th>

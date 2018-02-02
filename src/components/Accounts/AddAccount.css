@@ -40,7 +40,7 @@ form {
 }
 
 @media(max-width: 414px){
-    input {
+    .add-inputs {
         width: 80%;
     }
 }

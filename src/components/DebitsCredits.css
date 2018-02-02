@@ -4,7 +4,7 @@
     background-color: white;
     font-size: 14px;
     padding: 12px;
-    margin: 5px 0px 5px 0px;
+    /* margin: 5px 0px 5px 0px; */
     box-shadow: 0px 1px 2px 0px gray;
 }
 
@@ -12,15 +12,26 @@
     text-align: right;
 }
 
-th {
+.dc-table-header th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    text-overflow: hidden;
+    text-wrap: no-wrap;
+    width: 10%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
     background-color: #3E9D4A;
     color: white;
+  }
+td {
+    /* width: 100%; */
 }
 
-.debit-credits {
-    text-align: right;
+.dc-input {
+    width: calc(100% - 6px);
 }
-
 
 @media(max-width: 412px){
     th, tr {
