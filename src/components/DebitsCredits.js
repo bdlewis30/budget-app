@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './DebitsCredits.css';
 import _ from 'lodash';
-import Transaction from './Transaction';
+import AddTransaction from './AddTransaction';
 
 export default class DebitsCredits extends Component {
 
@@ -31,12 +31,27 @@ export default class DebitsCredits extends Component {
         })
     }
 
-    // handleDateChange = (event) => {
-    //     this.setState({
-    //         t_date: event.target.value
-    //     })
-    //     axios.put(`/api/accounts/${acctId}/transactions/${id}`, {t_date: this.state.t_date});
-    // }
+    handleBlur = (event, id) => {
+        const body = {
+            acct_type: this.props.acct_type,
+            to_date: this.state.t_date,
+            t_desc: this.state.t_desc,
+            debits: this.state.debits,
+            credits: this.state.credits
+            // id: this.state.id, 
+            // user_id: this.state.user_id
+        };
+        axios.put(`/api/accounts/${this.props.acctId}/transactions/${id}`, body)
+            .then(res => {
+
+            }, error => {
+                console.log(error);
+            })
+    }
+
+    handleChange(key, val){
+        this.setState({[key]: val})
+    }
 
     // getBalance = (acctId) => {
     //     axios.get(`/api/accounts/${acctId}`).then((res) => {
@@ -58,7 +73,7 @@ export default class DebitsCredits extends Component {
     }
 
     render() {
-        
+
         let total = 0
         const rows = _.map(this.state.transactions, (t, index) => {
             let currentBalance = this.toFinance(this.toNumber(t.start_bal) + total)
@@ -66,11 +81,11 @@ export default class DebitsCredits extends Component {
             let date = new Date(t.t_date)
             return (
                 <tr className="dc-input" key={index}>
-                    <td><input className="dc-input" onChange={this.handleDateChange} onBlur={this.handleDateChange} value={date.getFullYear() + '/' + Number(date.getMonth()) + 1 + '/' + date.getDate()}/></td>
-                    <td><input className="dc-input" value={t.t_desc}/></td>
-                    <td><input className="currency dc-input" value={t.debits}/></td>
-                    <td><input className="currency dc-input" value={t.credits}/></td>
-                    <td><input className="currency dc-input" value={currentBalance}/></td>
+                    <td><input className="dc-input" onBlur={(event) => { this.handleBlur(event, t.id) }} defaultValue={date.getFullYear() + '/' + Number(date.getMonth()) + 1 + '/' + date.getDate()} /></td>
+                    <td><input className="dc-input" onBlur={(event) => { this.handleBlur(event, t.id) }} defaultValue={t.t_desc} /></td>
+                    <td><input className="currency dc-input" onBlur={(event) => { this.handleBlur(event, t.id) }} defaultValue={t.debits} /></td>
+                    <td><input className="currency dc-input" onBlur={(event) => { this.handleBlur(event, t.id) }} defaultValue={t.credits} /></td>
+                    <td><input className="currency dc-input" defaultValue={currentBalance} /></td>
                 </tr>
             )
         })

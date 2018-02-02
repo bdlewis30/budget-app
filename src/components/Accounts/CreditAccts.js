@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import './Accounts.css';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import { getUserInfo, getAccounts, chooseAccount } from '../../reducer/users';
 import AddAccount from './AddAccount';
-import Transaction from '../Transaction';
+import AddTransaction from '../AddTransaction';
 import DebitsCredits from '../DebitsCredits';
 import _ from 'lodash';
 
-export class CreditAccts extends Component {
+class CreditAccts extends Component {
 
     constructor(props) {
         super();
@@ -25,21 +24,30 @@ export class CreditAccts extends Component {
         this.props.getAccounts('credit')
     }
 
-
     handleAccountSelect = (event) => {
+        console.log(this.props.creditAccts)
         const id = event.target.value;
         let creditName = this.props.creditAccts.find(credit => { return credit.id == id })
+        console.log(id)
         console.log(creditName)
         this.props.chooseAccount(creditName)
     }
 
     closeAddAccount = () => {
-        alert('Success! A new account has been submitted.')
+        alert('Success! A new account has been created.')
 
         this.setState({
             showAddAccount: false
         })
     }
+
+    // closeAddTransaction = () => {
+    //     alert('Success! A new transaction has been created.')
+
+    //     this.setState({
+    //         showAddTransaction: false
+    //     })
+    // }
 
     handleSelect = (event) => {
         if(event === 'Add-Account') {
@@ -82,9 +90,9 @@ export class CreditAccts extends Component {
                 </section>
                 <br /><br />
                 {this.state.showAddAccount ? <AddAccount acct_type="credit" action={this.closeAddAccount} /> : null}
-                {this.state.showAddTransaction ? <Transaction acct_type="credit" acctId={this.props.selectedAccount} acct_name={this.state.acct_name} /> : null}
+                {this.state.showAddTransaction ? <AddTransaction acct_type="credit" action={this.closeAddTransaction} acctId={this.props.selectedAccount} acct_name={this.state.acct_name} /> : null}
                 <div>
-                    <DebitsCredits acctId={this.props.selectedAccount} />
+                    <DebitsCredits acctId={this.props.selectedAccount} action={this.handleDateChange} />
                 </div>
             </div >
         )

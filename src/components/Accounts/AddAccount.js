@@ -17,7 +17,6 @@ export class AddAccount extends Component {
             acct_num: 0,
             routing_num: 0,
             memo: ''
-
         }
     
     }
@@ -65,7 +64,6 @@ export class AddAccount extends Component {
     saveAccount = () => {
         const body = {
             acct_type: this.props.acct_type,
-            // date: this.state.date,
             acct_name: this.state.acct_name,
             start_bal: this.state.start_bal,
             apr_int: this.state.apr_int,
@@ -73,8 +71,8 @@ export class AddAccount extends Component {
             routing_num: this.state.routing_num,
             memo: this.state.memo
         };
-        axios.post('/api/accounts', body).then(res => {
-            // console.log({res});
+        axios.post('/api/accounts', body)
+        .then(res => {
             this.props.getAccounts(this.props.acct_type)
             this.props.chooseAccount(res.data)
         }, error => {

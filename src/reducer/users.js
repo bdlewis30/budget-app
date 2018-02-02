@@ -6,7 +6,8 @@ const initialState = {
     checkingAccts: [],
     savingsAccts: [],
     loans: [],
-    selectedAccount: 0
+    selectedAccount: 0,
+    t_date: 0
 }
 
 const GET_USER_INFO = 'GET_USER_INFO';
@@ -29,6 +30,7 @@ export function getAccounts(type) {
 }
 
 export function chooseAccount(id) {
+    console.log(id)
     return {
         type: CHOOSE_ACCOUNT,
         payload: id.id
@@ -60,6 +62,7 @@ export function getUserInfo() {
 }
 
 export default function reducer(state = initialState, action) {
+    console.log(action)
     switch (action.type) {
         case GET_USER_INFO:
             // console.log(GET_USER_INFO);

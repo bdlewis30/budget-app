@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import { getUserInfo } from '../reducer/users';
 import './Accounts/Accounts.css';
 
-export class Transaction extends Component {
+export class AddTransaction extends Component {
 
-    constructor() {
+    constructor(props) {
         super();
 
         this.state = {
@@ -30,14 +30,12 @@ export class Transaction extends Component {
             debits: this.state.debits,
             credits: this.state.credits
         };
-        event.preventDefault();
         axios.post(`/api/accounts/${this.props.acctId}/transactions`, body)
-        .then(res => {
-            console.log({ res });
-            // this.props.onSave(res.data);
-        }, error => {
-            console.error(error);
-        })
+            .then(res => {
+                //this.props.getTransactions(this.props.t_id)
+            }, error => {
+                console.error(error);
+            })
     }
 
     handleDate = (value) => {
@@ -70,7 +68,7 @@ export class Transaction extends Component {
         return (
             <div className="accts-container">
                 <h2>Add Transactoion:</h2>
-                <form>
+                <form onSubmit={(e) => { e.preventDefault(); this.saveTransaction(); this.props.action() }}>
                     <label>Date:</label><br />
                     <input className="add-inputs" type="date" name="Date" onChange={(e) => this.handleDate(e.target.value)} /><br />
                     <label>Description:</label><br />
@@ -79,7 +77,7 @@ export class Transaction extends Component {
                     $<input className="add-inputs" type="number" pattern="(^\d*\.?\d*[0-9]+\d*$)|(^[0-9]+\d*\.\d*$)" step="any" min="0" name="Debit" placeholder="0.00" onChange={(e) => this.handleDebit(e.target.value)} /><br />
                     <label>Credit:</label><br />
                     $<input className="add-inputs" type="number" pattern="(^\d*\.?\d*[0-9]+\d*$)|(^[0-9]+\d*\.\d*$)" name="Credit" placeholder="0.00" onChange={(e) => this.handleCredit(e.target.value)} /><br />
-                    <button className="submit-btn" onClick={this.saveTransaction}>Submit</button>
+                    <button className="submit-btn" type="submit">Submit</button>
                 </form>
             </div>
         )
@@ -93,4 +91,4 @@ function mapStatetoProps(state) {
     }
 }
 
-export default connect(mapStatetoProps, { getUserInfo })(Transaction);
+export default connect(mapStatetoProps, { getUserInfo })(AddTransaction);

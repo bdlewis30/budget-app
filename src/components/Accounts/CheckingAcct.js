@@ -4,11 +4,11 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { getUserInfo } from '../../reducer/users';
 import AddAccount from './AddAccount';
-import Transaction from '../Transaction';
+import AddTransaction from '../AddTransaction';
 import DebitsCredits from '../DebitsCredits';
 import _ from 'lodash';
 
-export class CheckingAcct extends Component {
+class CheckingAcct extends Component {
 
     constructor(props) {
         super();
@@ -73,7 +73,7 @@ export class CheckingAcct extends Component {
                 </section>
                 <br /><br />
                 {this.state.showAddAccount ? <AddAccount acct_type="checking"/> : null}
-                {this.state.showAddTransaction ? <Transaction acct_type="checking" acctId={this.state.selectedAccount}/> : null}
+                {this.state.showAddTransaction ? <AddTransaction acct_type="checking" acctId={this.state.selectedAccount}/> : null}
                 <div>
                     <DebitsCredits acctId={this.state.selectedAccount} />
                 </div>

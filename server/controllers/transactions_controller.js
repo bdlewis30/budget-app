@@ -40,11 +40,12 @@ const controller = {
         const user_id = req.headers['x-user-id'];
         const id = parseInt(req.params.id);
         const {acct_type, t_date, t_desc, debits, credits} = req.body
+        
 
-        db.transactions.update_transactions([acct_type, t_date, t_desc, debits, credits, user_id])
+        db.transactions.update_transaction([acct_type, t_date, t_desc, debits, credits, id])
         .then((rows) => {
             res.status(200).send(rows[0])
-        }).catch(error => handleErrors(error,res))
+        })
     },
 
     delete: (req, res) => {
