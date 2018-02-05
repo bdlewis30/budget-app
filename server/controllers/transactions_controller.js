@@ -39,13 +39,17 @@ const controller = {
         const db = req.app.get('db')
         const user_id = req.headers['x-user-id'];
         const id = parseInt(req.params.id);
+        const acctId = parseInt(req.params.acctId);
         const {acct_type, t_date, t_desc, debits, credits} = req.body
-        
+        db.transactions.read_one_transaction(id, acctId).then((results) => {
+            console.log(results)
+            db.transactions.update_transaction([acct_type || results[0].acct_type, t_date || results[0].t_date, t_desc || results[0].t_desc, debits || results[0].debits, credits || results[0].credits, id])
+            .then((rows) => {
+                res.status(200).send(rows[0])
+            })
 
-        db.transactions.update_transaction([acct_type, t_date, t_desc, debits, credits, id])
-        .then((rows) => {
-            res.status(200).send(rows[0])
         })
+
     },
 
     delete: (req, res) => {

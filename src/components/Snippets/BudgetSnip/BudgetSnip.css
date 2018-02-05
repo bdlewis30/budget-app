@@ -1,5 +1,5 @@
-.budget-container {
-    height: 250px;
+.budget-snip-container {
+    height: 100%;
     width: 100%;
     background-color: white;
     color: #4A90E2;
@@ -14,6 +14,13 @@ a:link {
     cursor: pointer;
 }
 
+.budget-list-container {
+    height: 80%;
+    width: 100%;
+    font-size: 18px;
+    color: black;
+}
+
 .budget-title {
     float: left;
 }
@@ -24,12 +31,11 @@ a:link {
     margin-bottom: 10px;
 }
 
-.budget-list-container {
-    height: 80%;
-    font-size: 18px;
-    color: black;
+.budget-table {
+    width: 100%;
 }
-
-.bottom-padding {
-    height: 20px;
+.budget-table tr {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
 }

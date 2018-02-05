@@ -8,10 +8,6 @@
     box-shadow: 0px 1px 2px 0px gray;
 }
 
-.currency {
-    text-align: right;
-}
-
 .dc-table-header th {
     border: 1px solid #dddddd;
     text-align: left;
@@ -25,12 +21,20 @@
     background-color: #3E9D4A;
     color: white;
   }
-td {
-    /* width: 100%; */
+
+.table {
+    width: 100%;
 }
 
 .dc-input {
-    width: calc(100% - 6px);
+    /* width: calc(100% - 4px); */
+    width: 100%;
+    padding: 10px 0px;
+    border: none;
+}
+
+.currency {
+    text-align: right;
 }
 
 @media(max-width: 412px){

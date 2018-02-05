@@ -9,8 +9,8 @@ export default class Budget extends Component {
                 <section className="budget-container">
                     <h1 className="budget-title">Budget</h1>
                     <div className="total">$2,705.00</div>
-                    <section className="list-container">
-                        <table>
+                    <section className="budget-list-container">
+                        <table className="budget-table">
                             <tbody>
                                 <tr>
                                     <td>Bills</td>

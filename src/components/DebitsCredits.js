@@ -10,9 +10,15 @@ export default class DebitsCredits extends Component {
         super();
 
         this.state = {
-            transactions: []
+            transactions: [],
+            balance: [],
+            t_date: props.t_date,
+            t_desc: props.t_desc,
+            debits: props.debits,
+            credits: props.credits
         }
         this.getTransactions(props.acctId);
+        this.handleChange = this.handleChange.bind(this);
         // this.getBalance(props.acctId);
     }
 
@@ -31,33 +37,36 @@ export default class DebitsCredits extends Component {
         })
     }
 
-    handleBlur = (event, id) => {
-        const body = {
-            acct_type: this.props.acct_type,
-            to_date: this.state.t_date,
-            t_desc: this.state.t_desc,
-            debits: this.state.debits,
-            credits: this.state.credits
-            // id: this.state.id, 
-            // user_id: this.state.user_id
-        };
-        axios.put(`/api/accounts/${this.props.acctId}/transactions/${id}`, body)
-            .then(res => {
-
-            }, error => {
-                console.log(error);
-            })
+    getBalance = (acctId) => {
+        axios.get(`/api/accounts/${acctId}`).then((res) => {
+            this.setState({balance: res.data})
+        })
     }
 
-    handleChange(key, val){
-        this.setState({[key]: val})
-    }
+    // handleBlur = (event, id) => {
+    //     const body = {
+    //         acct_type: this.props.acct_type,
+    //         to_date: this.state.t_date,
+    //         t_desc: this.state.t_desc,
+    //         debits: this.state.debits,
+    //         credits: this.state.credits,
+    //         // id: this.state.id, 
+    //         // user_id: this.state.user_id
+    //         start_bal: 0
+    //     };
+    //     axios.put(`/api/accounts/${this.props.acctId}/transactions/${id}`, body)
+    //         .then(res => {
 
-    // getBalance = (acctId) => {
-    //     axios.get(`/api/accounts/${acctId}`).then((res) => {
-    //         this.setState({ start_bal: res.data.start_bal });
-    //     })
+    //         }, error => {
+    //             console.log(error);
+    //         })
     // }
+
+    handleChange(key, val, id) {
+        this.setState({ [key]: val })
+        axios.put(`/api/accounts/${this.props.acctId}/transactions/${id}`,{[key]: val})
+        .then(res => {}, error => {console.log(error)})
+    }
 
     toNumber(num) {
         return Number(num.replace(/\$|,/, ''))
@@ -73,18 +82,18 @@ export default class DebitsCredits extends Component {
     }
 
     render() {
-
-        let total = 0
+        
+        let total = 0;
         const rows = _.map(this.state.transactions, (t, index) => {
             let currentBalance = this.toFinance(this.toNumber(t.start_bal) + total)
             total += this.toNumber(t.credits) - this.toNumber(t.debits)
             let date = new Date(t.t_date)
             return (
                 <tr className="dc-input" key={index}>
-                    <td><input className="dc-input" onBlur={(event) => { this.handleBlur(event, t.id) }} defaultValue={date.getFullYear() + '/' + Number(date.getMonth()) + 1 + '/' + date.getDate()} /></td>
-                    <td><input className="dc-input" onBlur={(event) => { this.handleBlur(event, t.id) }} defaultValue={t.t_desc} /></td>
-                    <td><input className="currency dc-input" onBlur={(event) => { this.handleBlur(event, t.id) }} defaultValue={t.debits} /></td>
-                    <td><input className="currency dc-input" onBlur={(event) => { this.handleBlur(event, t.id) }} defaultValue={t.credits} /></td>
+                    <td><input className="dc-input" onBlur={(event) => { this.handleChange('t_date', event.target.value, t.id) }} defaultValue={date.getFullYear() + '/' + Number(date.getMonth()) + 1 +'/' + date.getDate()} /></td>
+                    <td><input className="dc-input" onBlur={(event) => { this.handleChange('t_desc', event.target.value, t.id) }} defaultValue={t.t_desc} /></td>
+                    <td><input className="currency dc-input" onBlur={(event) => { this.handleChange('debits', event.target.value, t.id) }} defaultValue={t.debits} /></td>
+                    <td><input className="currency dc-input" onBlur={(event) => { this.handleChange('credits', event.target.value, t.id) }} defaultValue={t.credits} /></td>
                     <td><input className="currency dc-input" defaultValue={currentBalance} /></td>
                 </tr>
             )
@@ -92,7 +101,7 @@ export default class DebitsCredits extends Component {
 
         return (
             <div>
-                <table>
+                <table className="table">
                     <tbody>
                         <tr className="dc-table-header">
                             <th>Date</th>
@@ -101,10 +110,8 @@ export default class DebitsCredits extends Component {
                             <th>Credits</th>
                             <th>Balance</th>
                         </tr>
+                        {this.state.balance.start_bal}
                         {rows}
-                        <tr>
-                            <td>{this.getBalance}</td>
-                        </tr>
                     </tbody>
                 </table>
             </div>

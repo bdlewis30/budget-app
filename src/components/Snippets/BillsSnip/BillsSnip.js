@@ -9,12 +9,11 @@ export default class BillsSnip extends Component {
         return (
             <div>
                 <Link to="/bills">
-                    <section className="bills-container">
+                    <section className="bills-snip-container">
                         <h1 className="bills-title">Bills Next 30 Days</h1>
                         <div className="total">$2,400.00</div>
-                        <div></div>
                         <section className="bills-list-container">
-                            <table>
+                            <table className="bills-table">
                                 <tbody>
                                     <tr>
                                         <td>Mortgage</td>

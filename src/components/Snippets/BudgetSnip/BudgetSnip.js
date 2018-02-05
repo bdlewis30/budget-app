@@ -8,11 +8,11 @@ export default class BudgetSnip extends Component {
         return (
             <div>
                 <Link to="/budget">
-                    <section className="budget-container">
+                    <section className="budget-snip-container">
                         <h1 className="budget-title">Budget</h1>
                         <div className="total">$2,705.00</div>
                         <section className="budget-list-container">
-                            <table>
+                            <table className="budget-table">
                                 <tbody>
                                     <tr>
                                         <td>Bills</td>

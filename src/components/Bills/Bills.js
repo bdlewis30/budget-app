@@ -10,8 +10,8 @@ export default class Bills extends Component {
                 <section className="bills-container">
                     <h1 className="bills-title">Bills Next 30 Days</h1>
                     <div className="total">$2,400.00</div>
-                    <section className="list-container">
-                        <table>
+                    <section className="bills-list-container">
+                        <table className="bills-table">
                             <tbody>
                                 <tr>
                                     <td>Mortgage</td>

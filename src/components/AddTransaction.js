@@ -22,7 +22,7 @@ export class AddTransaction extends Component {
         this.props.getUserInfo()
     }
 
-    saveTransaction = (event) => {
+    saveTransaction = (e) => {
         const body = {
             acct_type: this.props.acct_type,
             t_date: this.state.t_date,
@@ -74,9 +74,9 @@ export class AddTransaction extends Component {
                     <label>Description:</label><br />
                     <input className="add-inputs" type="text" name="Description" placeholder="Description" onChange={(e) => this.handleDescription(e.target.value)} /><br />
                     <label>Debit:</label><br />
-                    $<input className="add-inputs" type="number" pattern="(^\d*\.?\d*[0-9]+\d*$)|(^[0-9]+\d*\.\d*$)" step="any" min="0" name="Debit" placeholder="0.00" onChange={(e) => this.handleDebit(e.target.value)} /><br />
+                    $<input className="add-inputs" type="number" step="any" min="0" name="Debit" placeholder="0.00" onChange={(e) => this.handleDebit(e.target.value)} /><br />
                     <label>Credit:</label><br />
-                    $<input className="add-inputs" type="number" pattern="(^\d*\.?\d*[0-9]+\d*$)|(^[0-9]+\d*\.\d*$)" name="Credit" placeholder="0.00" onChange={(e) => this.handleCredit(e.target.value)} /><br />
+                    $<input className="add-inputs" type="number"  step="any" min="0" name="Credit" placeholder="0.00" onChange={(e) => this.handleCredit(e.target.value)} /><br />
                     <button className="submit-btn" type="submit">Submit</button>
                 </form>
             </div>

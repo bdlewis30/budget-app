@@ -10,7 +10,7 @@ import _ from 'lodash';
 class CreditAccts extends Component {
 
     constructor(props) {
-        super();
+        super(props);
 
         this.state = {
             showAddAccount: false,
@@ -41,13 +41,13 @@ class CreditAccts extends Component {
         })
     }
 
-    // closeAddTransaction = () => {
-    //     alert('Success! A new transaction has been created.')
+    closeAddTransaction = () => {
+        alert('Success! A new transaction has been created.')
 
-    //     this.setState({
-    //         showAddTransaction: false
-    //     })
-    // }
+        this.setState({
+            showAddTransaction: false
+        })
+    }
 
     handleSelect = (event) => {
         if(event === 'Add-Account') {
