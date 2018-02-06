@@ -70,6 +70,10 @@ class Loans extends Component {
             <div className="ledger-container">
                 <h2>Loan Balance</h2>
                 <section className="ledger-header">
+                    <select className="account-dropdown" onChange={this.handleAccountSelect} value={this.props.selectedAccount}>
+                        <option value="0">--Select An Account--</option>
+                        {options}
+                    </select>
                     <select className="account-dropdown" onChange={event => this.handleSelect(event.target.value)}>
                         <option>Accounts/Transactions</option>
                         <optgroup label="Accounts">
@@ -82,10 +86,6 @@ class Loans extends Component {
                             <option>Update Transaction</option>
                             <option>Delete Transaction</option>
                         </optgroup>
-                    </select>
-                    <select className="account-dropdown" onChange={this.handleAccountSelect} value={this.props.selectedAccount}>
-                        <option value="0">--Select An Account--</option>
-                        {options}
                     </select>
                 </section>
                 <br /><br />

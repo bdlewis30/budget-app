@@ -18,10 +18,10 @@ export default class Balance extends Component {
             <div>
                 <section className="balance-container">
                     <h1>Balance</h1>
-                    <div className="bal-amt">$500.00</div>
+                    <div className="bal-amt">$549.55</div>
                     <section className="dc-container">
-                        <div>Debits: <span className="debits">$1,700.00</span></div>
-                        <div>Credits: <span className="credits">$1,200.00</span></div>
+                        <div>Debits: <span className="debits">$1,785.72</span></div>
+                        <div>Credits: <span className="credits">$1,236.17</span></div>
                     </section>
                 </section>
             </div>
