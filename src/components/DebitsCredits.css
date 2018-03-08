@@ -13,7 +13,7 @@
     text-align: left;
     padding: 8px;
     text-overflow: hidden;
-    text-wrap: no-wrap;
+    /* text-wrap: no-wrap; */
     width: 10%;
     text-overflow: ellipsis;
     white-space: nowrap;

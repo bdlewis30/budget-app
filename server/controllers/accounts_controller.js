@@ -11,7 +11,6 @@ const controller = {
         if (req.query.acct_type) {
             promise = db.accounts.read_accounts_type([user_id, req.query.acct_type])
         } else {
-            // Send back all rows;
             promise = db.accounts.read_all_accounts([user_id])
         }
         promise.then((rows) => {
