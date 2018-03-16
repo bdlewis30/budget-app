@@ -27,7 +27,7 @@ class CheckingAcct extends Component {
     handleAccountSelect = (event) => {
         console.log(this.props.checkingAccts)
         const id = event.target.value;
-        let checkingName = this.props.checkingAccts.find(checking => { return checking.id === id })
+        let checkingName = this.props.checkingAccts.find(checking => { return checking.id == id })
         console.log(id)
         console.log(checkingName)
         this.props.chooseAccount(checkingName)

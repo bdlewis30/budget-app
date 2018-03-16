@@ -49,6 +49,7 @@ export default class Navbar extends Component {
                                 <Link to="/balance"><li>Balance</li></Link>
                                 <Link to="/bills"><li>Bills</li></Link>
                                 <Link to="/budget"><li>Budget</li></Link>
+                                <li id="close-ham-menu">X Close</li>
                             </ul>
                         </div>
                     </div>

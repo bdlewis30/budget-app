@@ -14,7 +14,6 @@
 }
 
 .mobile-nav {
-    background: #383D38;
     position: absolute;
     left: -200px;
     top: 0px;
@@ -23,11 +22,12 @@
 }
 
 .mobile-nav li {
-    border-bottom: 0.5px solid gray;
+    width: 80%;
+    border: 0.5px solid lightgray;
     padding: 15px 0px 15px 35px;
     position: relative;
-    background: lightgray;
-    color: #2B2F2A;
+    background: #1E90FF;
+    color: white;
 }
 
 .mobile-nav li:active {
@@ -62,6 +62,10 @@
     background-size: cover;
     display: none;
 }
+
+#close-ham-menu {
+    background-color:#2B2F2A;
+ }
 
 .dropdown {
     position: relative;

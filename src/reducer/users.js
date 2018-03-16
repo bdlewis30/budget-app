@@ -30,7 +30,6 @@ export function getAccounts(type) {
 }
 
 export function chooseAccount(id) {
-    console.log(id)
     return {
         type: CHOOSE_ACCOUNT,
         payload: id.id
