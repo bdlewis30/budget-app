@@ -7,7 +7,7 @@ import './AddAccount.css';
 export class AddAccount extends Component {
 
     constructor(props) {
-        super();
+        super(props);
 
         this.state = {
             newAccount: [],

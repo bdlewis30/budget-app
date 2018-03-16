@@ -4,5 +4,5 @@ CREATE TABLE IF NOT EXISTS users (
     email VARCHAR(180),
     picture TEXT,
     auth_id TEXT,
-    user_id INTEGER REFERENCES users (id)
+    user_id INTEGER REFERENCES Accounts (id)
 )

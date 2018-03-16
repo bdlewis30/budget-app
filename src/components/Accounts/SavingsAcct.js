@@ -27,7 +27,7 @@ class SavingsAccts extends Component {
     handleAccountSelect = (event) => {
         console.log(this.props.savingsAccts)
         const id = event.target.value;
-        let savingsName = this.props.savingsAccts.find(savings => { return savings.id == id })
+        let savingsName = this.props.savingsAccts.find(savings => { return savings.id === id })
         console.log(id)
         console.log(savingsName)
         this.props.chooseAccount(savingsName)

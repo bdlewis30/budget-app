@@ -1,16 +1,44 @@
 import React, { Component } from 'react';
 import './Bills.css';
+import AddBills from './AddBills';
 
 
 export default class Bills extends Component {
 
+    constructor(props){
+        super(props)
+
+        this.state = {
+            showAddBills: false,
+            bills: []
+        }
+
+    }
+
+    openAddBills = () => {
+        this.setState({
+            showAddBills: true
+        })
+    }
+
+    closeAddBills = () => {
+        alert('Success! The bill has been added.')
+        this.setState({
+            showAddBills: false
+        })
+    }
+
     render() {
+
         return (
             <div>
                 <section className="bills-container">
                     <h1 className="bills-title">Bills Next 30 Days</h1>
                     <div className="total">$2,400.00</div>
                     <section className="bills-list-container">
+                    <br />
+                    <button className="add-bills-button" onClick={this.openAddBills}>Add Bills</button>
+                    {this.state.showAddBills ? <AddBills action={this.closeAddBills} /> : null }
                         <table className="bills-table">
                             <tbody>
                                 <tr>
@@ -53,3 +81,4 @@ export default class Bills extends Component {
         )
     }
 }
+

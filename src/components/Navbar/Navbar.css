@@ -81,8 +81,9 @@
 .dropdown-content li{
     width: 100%;
     padding: 10px;
-    border-bottom: 0.5px solid gray;
-    background-color: lightgray;
+    border-bottom: 0.5px solid lightgray;
+    /* background-color: lightgray; */
+    background-color: ghostwhite;
     color: #2B2F2A;
 }
 

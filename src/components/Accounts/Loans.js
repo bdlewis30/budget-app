@@ -27,7 +27,7 @@ class Loans extends Component {
     handleAccountSelect = (event) => {
         console.log(this.props.loans)
         const id = event.target.value;
-        let loanName = this.props.loans.find(loan => { return loan.id == id })
+        let loanName = this.props.loans.find(loan => { return loan.id === id })
         console.log(id)
         console.log(loanName)
         this.props.chooseAccount(loanName)

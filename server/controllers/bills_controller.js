@@ -1,18 +1,22 @@
 module.exports = {
-    create: {
+    create: (req, res) => {
+        const db = req.app.get('db')
+        const { payee, due_date, occurrence, category, amount } = req.body
 
+        db.bills.create_bills(payee, due_date, occurrence, category, amount)
+        .then(result => res.send(result))
     },
 
-    getAll: {
+    // getAll: (req, res){
 
-    },
-    getOne: {
+    // },
+    // getOne: (req, res){
 
-    },
-    update: {
+    // },
+    // update: (req, res){
 
-    },
-    delete: {
+    // },
+    // delete: (req, res){
 
-    }
+    // }
 };

@@ -35,3 +35,27 @@
     justify-content: space-between;
     margin-top: 10px;
 }
+
+.new-bills-container {
+    width: 100%;
+    background-color: #e9ecef;
+    color: #4A90E2;
+    font-size: 14px;
+    padding: 12px;
+    margin: 10px 0px 25px 0px;
+    box-shadow: 0px 1px 2px 0px gray;
+}
+
+.add-bills-button {
+    background-color: dodgerblue;
+    font-size: 15px;
+    border-radius: 10px;
+    border: 1px solid lightgray;
+    margin: 20px 20px 20px 0px;
+    padding: 10px 20px;
+    color: white;
+}
+
+.add-bills-button:hover {
+    background-color: cornflowerblue;
+}

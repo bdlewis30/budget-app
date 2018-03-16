@@ -23,7 +23,7 @@ router.delete('/accounts/:id', accounts_controller.delete)
 // router.delete('/accounts/:acctId/balance/:id', balance_controller.delete)
 
 //Bills
-// router.post('/accounts/:acctId/bills', bills_controller.create)
+router.post('/accounts/bills', bills_controller.create)
 // router.get('/accounts/:acctId/bills', bills_controller.getAll)
 // router.get('/accounts/:acctId/bills', bills_controller.next30Days)
 // router.get('/accounts/:acctId/bills/:id', bills_controller.getOne)

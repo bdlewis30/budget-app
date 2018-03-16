@@ -1,7 +1,8 @@
 header {
     height: 150px;
     width: 100%;
-    background-color: #38AA5F;
+    /* background-color: #38AA5F; */
+    background-color: #1E90FF	;
     color: white;
     position: relative;
 }

@@ -25,11 +25,8 @@ class CreditAccts extends Component {
     }
 
     handleAccountSelect = (event) => {
-        console.log(this.props.creditAccts)
         const id = event.target.value;
-        let creditName = this.props.creditAccts.find(credit => { return credit.id == id })
-        console.log(id)
-        console.log(creditName)
+        let creditName = this.props.creditAccts.find(credit => { return credit.id === id })
         this.props.chooseAccount(creditName)
     }
 

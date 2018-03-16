@@ -1,3 +1,3 @@
-INSERT INTO Bills (due_date, occurrence, category, amount, acct_id)
+INSERT INTO Bills (payee, due_date, occurrence, category, amount)
 VALUES ($1, $2, $3, $4, $5)
 RETURNING *;
