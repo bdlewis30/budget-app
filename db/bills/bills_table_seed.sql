@@ -4,5 +4,6 @@ CREATE TABLE IF NOT EXISTS Bills (
     due_date DATE,
     occurrence VARCHAR(180),
     category VARCHAR(180), 
-    amount MONEY
+    amount MONEY,
+    acct_id INTEGER REFERENCES Accounts (id)
 );

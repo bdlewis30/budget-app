@@ -7,7 +7,7 @@ import './Accounts/Accounts.css';
 export class AddTransaction extends Component {
 
     constructor(props) {
-        super();
+        super(props);
 
         this.state = {
             transactions: [],
@@ -32,7 +32,7 @@ export class AddTransaction extends Component {
         };
         axios.post(`/api/accounts/${this.props.acctId}/transactions`, body)
             .then(res => {
-                //this.props.getTransactions(this.props.t_id)
+                // this.props.getTransactions(this.props.t_id)
             }, error => {
                 console.error(error);
             })

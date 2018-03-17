@@ -43,25 +43,6 @@ export default class DebitsCredits extends Component {
         })
     }
 
-    // handleBlur = (event, id) => {
-    //     const body = {
-    //         acct_type: this.props.acct_type,
-    //         to_date: this.state.t_date,
-    //         t_desc: this.state.t_desc,
-    //         debits: this.state.debits,
-    //         credits: this.state.credits,
-    //         // id: this.state.id, 
-    //         // user_id: this.state.user_id
-    //         start_bal: 0
-    //     };
-    //     axios.put(`/api/accounts/${this.props.acctId}/transactions/${id}`, body)
-    //         .then(res => {
-
-    //         }, error => {
-    //             console.log(error);
-    //         })
-    // }
-
     handleChange(key, val, id) {
         this.setState({ [key]: val })
         axios.put(`/api/accounts/${this.props.acctId}/transactions/${id}`,{[key]: val})

@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import './Bills.css';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { getUserInfo } from '../../reducer/users';
+import './Bills.css';
 
-export default class AddBills extends Component {
+export class AddBills extends Component {
 
     constructor(props) {
         super(props)
@@ -14,8 +16,11 @@ export default class AddBills extends Component {
             occurrence: '',
             category: '',
             amount: '0.00',
-            showAddBills: true
         }
+    }
+
+    componentDidMount() {
+        this.props.getUserInfo()
     }
 
     handleInput = (e, input) => {
@@ -36,7 +41,7 @@ export default class AddBills extends Component {
         }
     }
 
-    saveBill = () => {
+    saveBill = (e) => {
         const body = {
             payee: this.state.payee,
             due_date: this.state.due_date,
@@ -44,11 +49,11 @@ export default class AddBills extends Component {
             category: this.state.category,
             amount: this.state.amount
         };
-        axios.post('/api/accounts/bills', body)
+        axios.post(`/api/accounts/${this.props.acctId}/bills`, body)
         .then(res => {
-            this.setState({
-                newBill: res.data
-            })
+            // this.setState({
+            //     newBill: res.data
+            // })
         }, error => {
             console.error(error)
         })
@@ -77,3 +82,11 @@ export default class AddBills extends Component {
         )
     }
 }
+
+function mapStatetoProps(state) {
+    return {
+        user: state.user
+    }
+}
+
+export default connect(mapStatetoProps, { getUserInfo })(AddBills);

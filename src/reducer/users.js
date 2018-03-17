@@ -61,7 +61,6 @@ export function getUserInfo() {
 }
 
 export default function reducer(state = initialState, action) {
-    console.log(action)
     switch (action.type) {
         case GET_USER_INFO:
             // console.log(GET_USER_INFO);
